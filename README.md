@@ -2,7 +2,7 @@
 
 > **The definitive working engineer's guide to every tool needed to design, simulate, and fabricate microfluidic devices.**
 
-> Last updated: March 2026 | 45 research files | 1.23 MB of content (~1230 pages)
+> Last updated: March 2026 | 61 research files | 1.81 MB of content (~1800 pages)
 
 ---
 

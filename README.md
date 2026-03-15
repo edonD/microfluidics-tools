@@ -2,7 +2,7 @@
 
 > **The definitive working engineer's guide to every tool needed to design, simulate, and fabricate microfluidic devices.**
 
-> Last updated: March 2026 | 20 research files | 500+ pages of content
+> Last updated: March 2026 | 23 research files | 700+ pages of content
 
 ---
 
@@ -77,6 +77,17 @@
 | 16 | [Practical Tips & Troubleshooting](research/16_practical_tips.md) | Design rules, dimensionless numbers, troubleshooting (bubbles, leaks, clogs), PDMS protocols, mixer design, consumable pricing | 16 KB |
 | 17 | [Advanced Techniques](research/17_advanced_techniques.md) | Quake valves, mLSI, centrifugal/lab-on-disc, droplet microfluidics, inertial focusing, paper µPADs, electrokinetics, acoustofluidics | 14 KB |
 
+### Part 6: Reference Materials (Phase 3)
+
+| # | File | Topics | Size |
+|---|------|--------|------|
+| 18 | [Materials Compatibility Database](research/18_materials_database.md) | Chemical compatibility charts for PDMS/COC/COP/PMMA/glass/silicon, swelling data, bonding compatibility matrix, material properties | 37 KB |
+| 19 | [Applications Guide](research/19_applications_guide.md) | POC diagnostics, drug discovery, single-cell analysis, flow chemistry, LNP production, environmental monitoring | *In progress* |
+| 20 | [Simulation Tutorials](research/20_simulation_tutorials.md) | Step-by-step COMSOL, OpenFOAM, FEniCS setup guides. Analytical calculators. Python code snippets. Mesh convergence. | 48 KB |
+| 21 | [Vendor Comparison Matrices](research/21_vendor_comparison.md) | Head-to-head: COMSOL vs ANSYS vs OpenFOAM, Elveflow vs Fluigent, 3D printer comparison, buying guides for 4 lab scenarios | 16 KB |
+| 22 | [Fabrication Recipes](research/22_fabrication_recipes.md) | SU-8 process parameters, dry film resists (Ordyl, ADEX), PDMS casting protocol, plasma bonding, mask ordering | 14 KB |
+| 23 | [Experiment Automation](research/23_automation_software.md) | Python/LabVIEW control, vendor SDKs (Elveflow, Fluigent), PID feedback, image analysis, data logging | 10 KB |
+
 ---
 
 ## Key Findings
@@ -109,6 +120,11 @@
 
 | Date | Update |
 |------|--------|
+| 2026-03-15 | **Phase 3** — Added 6 reference files: materials database, simulation tutorials, vendor comparisons, fabrication recipes, experiment automation |
+| 2026-03-15 | New: Materials compatibility database with PDMS swelling chart, bonding matrix, sterilization guide |
+| 2026-03-15 | New: Step-by-step simulation tutorials for COMSOL, OpenFOAM, FEniCS with Python code |
+| 2026-03-15 | New: Complete SU-8 recipes, dry film resist alternatives, PDMS casting protocol |
+| 2026-03-15 | New: Experiment automation with Python SDKs, PID control, image analysis |
 | 2026-03-15 | **Phase 2** — Added 5 deep-dive files: emerging technologies, foundry directory, open-source ecosystem, practical tips, advanced techniques |
 | 2026-03-15 | New: AI/ML for microfluidic design (PINNs, surrogate models, generative design) |
 | 2026-03-15 | New: 14+ foundry services compared with capabilities and certifications |

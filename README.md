@@ -2,7 +2,7 @@
 
 > **The definitive working engineer's guide to every tool needed to design, simulate, and fabricate microfluidic devices.**
 
-> Last updated: March 2026 | 27 research files | 722 KB of content (~700 pages)
+> Last updated: March 2026 | 28+ research files | 750+ KB of content (~750 pages)
 
 ---
 
@@ -88,6 +88,14 @@
 | 22 | [Fabrication Recipes](research/22_fabrication_recipes.md) | SU-8 process parameters, dry film resists (Ordyl, ADEX), PDMS casting protocol, plasma bonding, mask ordering | 14 KB |
 | 23 | [Experiment Automation](research/23_automation_software.md) | Python/LabVIEW control, vendor SDKs (Elveflow, Fluigent), PID feedback, image analysis, data logging | 10 KB |
 | 24 | [Standards & Regulatory](research/24_standards_regulatory.md) | ISO 22916 interoperability, FDA 510(k), CE marking (MDR/IVDR), ISO 13485, biocompatibility, cleanroom classification | 8 KB |
+
+### Part 7: Reference & Glossary (Phase 4)
+
+| # | File | Topics | Size |
+|---|------|--------|------|
+| 25 | [Surface, Interface & QC](research/25_surface_interface_qc.md) | Chip cleaning/reuse, surface functionalization, coatings, chip-to-world interface, quality control, metrology | *In progress* |
+| 26 | [Industry & Market Trends](research/26_industry_trends.md) | Market size/forecast, key players, startups, tech trends 2025-2030, career opportunities | *In progress* |
+| 27 | [Glossary & Quick Reference](research/27_glossary.md) | 80+ abbreviations, key formulas, physical constants, unit conversions, Python calculators | 11 KB |
 
 ---
 

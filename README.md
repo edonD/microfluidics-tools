@@ -2,7 +2,7 @@
 
 > **The definitive working engineer's guide to every tool needed to design, simulate, and fabricate microfluidic devices.**
 
-> Last updated: March 2026 | 28+ research files | 750+ KB of content (~750 pages)
+> Last updated: March 2026 | 30 research files | 800+ KB of content (~800 pages)
 
 ---
 
@@ -93,8 +93,8 @@
 
 | # | File | Topics | Size |
 |---|------|--------|------|
-| 25 | [Surface, Interface & QC](research/25_surface_interface_qc.md) | Chip cleaning/reuse, surface functionalization, coatings, chip-to-world interface, quality control, metrology | *In progress* |
-| 26 | [Industry & Market Trends](research/26_industry_trends.md) | Market size/forecast, key players, startups, tech trends 2025-2030, career opportunities | *In progress* |
+| 25 | [Surface, Interface & QC](research/25_surface_interface_qc.md) | Chip cleaning/reuse, surface functionalization, coatings, chip-to-world interface, quality control, metrology | 45 KB |
+| 26 | [Industry & Market Trends](research/26_industry_trends.md) | Market size/forecast, key players, startups, tech trends 2025-2030, career opportunities | 25 KB |
 | 27 | [Glossary & Quick Reference](research/27_glossary.md) | 80+ abbreviations, key formulas, physical constants, unit conversions, Python calculators | 11 KB |
 
 ---

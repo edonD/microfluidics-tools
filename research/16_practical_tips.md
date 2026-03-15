@@ -261,3 +261,62 @@ Start
   |
   +-- PDMS is your best choice for prototyping
 ```
+
+---
+
+## Pre-Fabrication Design Checklist
+
+Before sending your design to fabrication, verify each item:
+
+### Geometry
+- [ ] Channel widths and heights are within fabrication limits
+- [ ] Aspect ratio is between 1:10 and 4:1
+- [ ] No negative draft angles (for molding/embossing)
+- [ ] Support posts added for wide channels (every 10× height)
+- [ ] Rounded corners (no acute angles) to prevent bubble trapping
+- [ ] Wall thickness between channels ≥1.5× channel width
+
+### Ports & Connections
+- [ ] Inlet/outlet port diameter matches your tubing (1.0 or 1.5 mm for PDMS)
+- [ ] Ports are ≥5 mm from chip edge
+- [ ] Port spacing allows for tubing/connectors without interference
+- [ ] Dead volume at connections is minimized
+
+### Alignment & Layers
+- [ ] Alignment marks on every layer (for multi-layer devices)
+- [ ] Layer registration tolerance accounted for (±30 µm typical)
+- [ ] Scale bar included for verification after fabrication
+
+### Simulation
+- [ ] Pressure drop at working flow rate is within pump/controller range
+- [ ] Reynolds number calculated and confirmed laminar (Re < ~2000)
+- [ ] Mixing length estimated (need mixer if channel too short?)
+- [ ] No dead-end channels (or intentional)
+
+### Fabrication
+- [ ] Design format matches fabrication method (GDSII for masks, STL for 3D print, DXF for laser)
+- [ ] Feature sizes are achievable with chosen method
+- [ ] Channel dimensions constant depth where possible (easier to fabricate)
+- [ ] Designed for the right polarity (dark-field vs light-field for mask)
+
+### Testing
+- [ ] Plan for how to connect tubing
+- [ ] Plan for how to prime channels (ethanol first?)
+- [ ] Plan for leak testing protocol
+- [ ] Microscope access — can you see the channels?
+
+### Documentation
+- [ ] All dimensions labeled on design file
+- [ ] Fabrication parameters documented (resist thickness, exposure dose)
+- [ ] Version number on the design file
+
+---
+
+## Education & Starter Kits
+
+| Kit | Vendor | Price | Includes | Best For |
+|-----|--------|-------|----------|----------|
+| **Microfluidics Education Kit** | LabSmith | ~$3,000-5,000 | Research-grade pumps, chips, automation software, curriculum | University courses, 1-4 students per kit |
+| **Educational Starter Kit** | Dolomite | ~$2,000-4,000 | Compact system, chips, Mitos Fluika software, USB-powered | Portable demos, intro courses |
+| **DIY Poseidon Kit** | Open source | ~$400 | 3 syringe pumps + microscope, 3D printed | Budget teaching, maker spaces |
+| **PDMS Casting Demo** | DIY | <$100 | Sylgard 184, glass slides, biopsy punch, tubing | Hands-on fabrication intro |

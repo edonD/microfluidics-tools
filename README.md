@@ -2,7 +2,7 @@
 
 > **The definitive working engineer's guide to every tool needed to design, simulate, and fabricate microfluidic devices.**
 
-> Last updated: March 2026 | 15 research files | 350+ pages of content
+> Last updated: March 2026 | 20 research files | 500+ pages of content
 
 ---
 
@@ -67,6 +67,16 @@
 | 11a | [Cost Analysis](research/11_cost_analysis.md) | Software licensing, per-chip fabrication costs, equipment costs, foundry pricing, total project estimates | 12 KB |
 | 12 | [Learning Resources](research/12_learning_resources.md) | Textbooks, online courses, YouTube, communities, conferences, journals, GitHub repos | 13 KB |
 
+### Part 5: Deep Dives (Phase 2)
+
+| # | File | Topics | Size |
+|---|------|--------|------|
+| 13 | [Emerging Technologies (2024-2026)](research/13_emerging_technologies.md) | AI/ML design tools, organ-on-chip platforms, paper microfluidics, acoustofluidics, EWOD/DMF, inertial microfluidics | 34 KB |
+| 14 | [Foundry Services Directory](research/14_foundry_services.md) | Detailed comparison of 14+ contract manufacturers with capabilities, certifications, and pricing | 19 KB |
+| 15 | [Open-Source Ecosystem](research/15_open_source_ecosystem.md) | Complete catalog of open-source microfluidics projects: design tools, hardware, pumps, controllers | 18 KB |
+| 16 | [Practical Tips & Troubleshooting](research/16_practical_tips.md) | Design rules, dimensionless numbers, troubleshooting (bubbles, leaks, clogs), PDMS protocols, mixer design, consumable pricing | 16 KB |
+| 17 | [Advanced Techniques](research/17_advanced_techniques.md) | Quake valves, mLSI, centrifugal/lab-on-disc, droplet microfluidics, inertial focusing, paper µPADs, electrokinetics, acoustofluidics | 14 KB |
+
 ---
 
 ## Key Findings
@@ -99,13 +109,19 @@
 
 | Date | Update |
 |------|--------|
-| 2026-03-15 | **Initial release** — Complete research across all 15 files covering simulation, design, fabrication, characterization, fluid handling, workflows, costs, and learning resources |
+| 2026-03-15 | **Phase 2** — Added 5 deep-dive files: emerging technologies, foundry directory, open-source ecosystem, practical tips, advanced techniques |
+| 2026-03-15 | New: AI/ML for microfluidic design (PINNs, surrogate models, generative design) |
+| 2026-03-15 | New: 14+ foundry services compared with capabilities and certifications |
+| 2026-03-15 | New: Troubleshooting guide (bubbles, leaks, clogs) + PDMS protocol + mixer design guide |
+| 2026-03-15 | New: Advanced techniques — Quake valves, droplet microfluidics, inertial focusing, acoustofluidics, paper µPADs |
+| 2026-03-15 | New: Consumable pricing reference (PDMS, SU-8, wafers, masks) |
+| 2026-03-15 | **Phase 1 (Initial)** — 15 research files covering simulation, design, fabrication, characterization, fluid handling, workflows, costs, and learning resources |
 | 2026-03-15 | Comprehensive CFD comparison: COMSOL vs ANSYS vs OpenFOAM vs SimScale vs Flow-3D |
 | 2026-03-15 | Full fabrication methods guide: soft lithography, 3D printing, hot embossing, injection molding, laser processing, glass/silicon |
 | 2026-03-15 | Equipment buyer's guide with real pricing: syringe pumps, pressure controllers, flow sensors, connectors |
 | 2026-03-15 | Three complete workflows with step-by-step instructions and cost breakdowns |
 | 2026-03-15 | Open-source alternatives cataloged for every commercial tool |
-| 2026-03-15 | 20+ GitHub repositories indexed for open-source microfluidics |
+| 2026-03-15 | 30+ GitHub repositories indexed for open-source microfluidics |
 
 ---
 
@@ -118,6 +134,10 @@
 5. **Setting up a lab?** → [Fluid Handling](research/11_fluid_handling.md) + [Cost Analysis](research/11_cost_analysis.md)
 6. **Going to production?** → [Injection Molding](research/07_fabrication_embossing_molding.md) + [Workflow C](research/10_workflows.md)
 7. **On a budget?** → [Cost Analysis](research/11_cost_analysis.md) has budget-optimized setups at every price point
+8. **Troubleshooting?** → [Practical Tips](research/16_practical_tips.md) covers bubbles, leaks, clogs, and common mistakes
+9. **Advanced techniques?** → [Advanced Techniques](research/17_advanced_techniques.md) covers valves, droplets, inertial sorting, acoustofluidics
+10. **Looking for a foundry?** → [Foundry Directory](research/14_foundry_services.md) compares 14+ contract manufacturers
+11. **Want open-source?** → [Open-Source Ecosystem](research/15_open_source_ecosystem.md) catalogs every major project
 
 ---
 

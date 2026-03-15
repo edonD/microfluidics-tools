@@ -1,659 +1,702 @@
-# Laser Processing & Glass/Silicon Microfluidics Fabrication
+# Laser Processing and Glass/Silicon Microfluidics
 
-> Last updated: March 2026
-
-## Overview
-
-This document covers two categories of microfluidic fabrication:
-1. **Laser processing** — using CO2, UV, excimer, and femtosecond lasers to directly create microfluidic features in polymers and glass
-2. **Glass and silicon microfabrication** — wet etching, dry etching (DRIE), and bonding methods for inorganic substrate microfluidics
-
-These methods complement the thermoplastic replication approaches (hot embossing, injection molding) covered in `07_fabrication_embossing_molding.md`.
+> Research compiled March 2026. Covers CO2 laser cutting of polymers, femtosecond laser machining of glass (SLE), excimer laser ablation, glass wet etching, silicon DRIE, bonding techniques, and decision criteria for glass/silicon vs. polymer fabrication.
 
 ---
 
-# Part I: Laser Processing
-
-## 1. CO2 Laser Cutting/Engraving for PMMA Microfluidics
+## 1. CO2 Laser Cutting for PMMA/Acrylic
 
 ### What It Is
+CO2 laser cutting/engraving uses a 10.6 um wavelength infrared laser to ablate, cut, or engrave polymer substrates -- most commonly PMMA (poly(methyl methacrylate), acrylic). The laser heats and vaporizes material, leaving channels or through-cuts. This is one of the fastest and most accessible methods for fabricating polymer microfluidic devices.
 
-CO2 lasers (wavelength 10.6 um) are strongly absorbed by PMMA/acrylic, enabling direct ablation of channels by raster engraving (area removal) or vector cutting (through-cuts for layer-based devices). This is one of the fastest and most accessible methods for microfluidic prototyping.
-
-### Process Modes
-
-| Mode | Description | Channel Profile | Best For |
-|------|-------------|----------------|----------|
-| **Raster engraving** | Laser sweeps back and forth, ablating surface | U-shaped, flatter bottom | Wide channels, chambers, reservoirs |
-| **Vector cutting** | Laser follows a path in a single pass | V-shaped, Gaussian profile | Narrow channels, through-holes, outlines |
-| **Multi-pass vector** | Multiple passes at lower power | More controlled depth | Deeper channels with better control |
+### How It Works
+When a focused CO2 laser spot with appropriate power moves across the acrylic surface, it heats and vaporizes a small volume of material. The resulting cavities serve as microfluidic channels. Two writing modes exist:
+- **Raster mode**: The laser scans line-by-line across the surface, producing U-shaped channels with flatter bottoms. Better for wide, shallow channels.
+- **Vector mode**: The laser traces a path along channel centerlines, producing V-shaped channels. Better for narrow, deep channels.
 
 ### Equipment
 
-| Manufacturer | Model Examples | Power Range | Work Area | Resolution | Approx. Price |
-|-------------|---------------|-------------|-----------|------------|---------------|
-| **Epilog** | Mini 24, Fusion Pro | 30-120 W | 12"x24" to 32"x20" | Up to 1200 dpi | $8K-$45K |
-| **Trotec** | Speedy 100, Speedy 360, SP500 | 30-120 W | 24"x12" to 49"x28" | Up to 1000 dpi | $15K-$60K |
-| **Universal Laser** | VLS 2.30, VLS 6.60, PLS 4.75 | 25-75 W | 12"x24" to 32"x18" | Up to 1000 dpi | $10K-$50K |
-| **Budget Chinese CO2** | K40, OMTech, etc. | 40-100 W | Various | ~500 dpi | $400-$3,000 |
+| System | Laser Power | Work Area | Resolution | Price (approx.) |
+|---|---|---|---|---|
+| **Epilog Maker 12** | 30 W CO2 | 12" x 12" | 1000 DPI (25 um spot) | ~$10,000 |
+| **Epilog Fusion Pro 32** | 60-120 W CO2 | 32" x 20" | 1000 DPI | ~$25,000-50,000 |
+| **Epilog Fusion Pro 48** | 60-200 W CO2 | 48" x 36" | 1000 DPI | ~$35,000-70,000 |
+| **Trotec Speedy 100** | 30-80 W CO2 | 24" x 12" | Up to 1000 DPI | ~$10,000-25,000 |
+| **Trotec Speedy 300** | 30-120 W CO2 | 29" x 17" | Up to 1000 DPI | ~$20,000-40,000 |
+| **Trotec SP 2000** | 100-400 W CO2 | 49" x 28" | Up to 1000 DPI | ~$40,000-80,000 |
+| **Universal Laser VLS 3.60** | 30-60 W CO2 | 24" x 12" | 1000 DPI | ~$15,000-30,000 |
+| **Universal Laser PLS 4.75** | 30-75 W CO2 | 24" x 18" | 1000 DPI | ~$20,000-35,000 |
+| **Budget (e.g., Epilog Zing)** | 30-40 W CO2 | 16" x 12" | 1000 DPI | ~$8,000-12,000 |
+| **Chinese imports (K40, OMTech)** | 40-80 W CO2 | varies | Lower precision | ~$400-3,000 |
 
-### Achievable Resolution and Feature Sizes
+### Achievable Feature Sizes
 
-| Parameter | Typical Range | Notes |
-|-----------|--------------|-------|
-| Minimum channel width | 50-100 um (high-end); 100-200 um (typical) | Limited by beam spot size (~100 um for focused CO2) |
-| Channel depth | 10-500 um (controllable via power/speed) | Depth shows non-linear relationship with fluence |
-| Depth control precision | +/- 10-20 um | Affected by material variability |
-| Minimum through-hole | ~200 um | Material dependent |
-| Surface roughness (channel floor) | Ra 0.5-5 um | Rough compared to mold-replicated; can be improved by chemical polishing |
-| Positional accuracy | 25-100 um | Depends on machine quality |
+| Parameter | Typical Range | Best Demonstrated |
+|---|---|---|
+| Channel width (raster) | 100-500 um | ~60 um (at 1000 DPI) |
+| Channel width (vector) | 100-300 um | ~100 um |
+| Channel depth | 30-300 um | Controllable via power/speed |
+| Cut-through (PMMA) | Up to 25 mm thick | Depends on laser power |
+| Surface roughness (Ra) | 1-10 um | Improved with chemical post-processing |
+| Positional accuracy | ~25-50 um | System-dependent |
 
-### Cost Analysis
+### Channel Profile Control
+- **Power**: Higher power = deeper channels; too much power causes excessive melting and recast
+- **Speed**: Slower speed = deeper, wider channels; faster = shallower, narrower
+- **Focus**: Defocusing the beam increases spot size and changes channel profile
+- **Number of passes**: Multiple passes deepen channels without excessive heat buildup
+- **Pulse frequency**: Higher frequency = smoother surface but slower effective speed
 
-| Item | Cost |
-|------|------|
-| Equipment (research-grade) | $10K-$50K |
-| Equipment (budget) | $400-$3,000 |
-| PMMA sheet (per device) | $0.10-$1 |
-| Operating cost (electricity, gas) | Minimal |
-| **Per-device cost (materials + time)** | **$0.10-$5** |
-| Makerspace/fab lab access (hourly) | $10-$50/hr |
+### Post-Processing for CO2 Laser-Cut PMMA
+- **Solvent vapor polishing**: Brief exposure to chloroform or dichloromethane vapor smooths rough laser-cut surfaces, reducing Ra from ~5-10 um to <1 um
+- **Thermal annealing**: Heating to 80-90C (below PMMA Tg of ~105C) relieves thermal stresses
+- **Chemical post-processing**: Dipping in chloroform solution improves surface quality and optical clarity of laser-ablated channels
 
-### Channel Quality Improvement
+### Bonding Laser-Cut PMMA
+- **Thermal bonding**: Heat PMMA layers to near Tg (~105C) under pressure; risk of channel deformation
+- **Solvent bonding**: Apply thin layer of chloroform, acetone, or ethanol between layers; press together. Fast but requires skill to avoid channel flooding
+- **Adhesive bonding**: Double-sided tape (e.g., 3M 468MP), UV-curable adhesive, or PMMA cement
+- **Solvent-assisted thermal bonding**: Combination approach; brief solvent exposure + moderate heat gives strongest bonds with least deformation
 
-CO2 laser channels have rough surfaces. Post-processing options:
-
-1. **Solvent vapor polishing** — brief exposure to chloroform or dichloromethane vapor smooths PMMA surfaces dramatically
-2. **Thermal annealing** — heating below Tg smooths surface features
-3. **Chemical post-processing** — demonstrated to yield "excellent quality microchannels" after CO2 laser writing
-
-### Pros and Cons
-
-**Pros:**
-- Very fast prototyping (minutes per device)
-- Low cost equipment widely available (makerspaces, universities)
+### Pros
+- Very fast prototyping: design to device in < 1 hour
+- Low cost: budget systems from ~$400, professional from ~$10,000
 - No cleanroom required
-- PMMA/acrylic is cheap and widely available
-- Design changes are instant (change CAD file)
-- Can cut complex 2D patterns and layer-based 3D structures
+- Cuts through full PMMA thickness for layer-based assembly
+- Widely available in makerspaces, fab labs, and university shops
+- Large work area (up to 48" x 36")
 
-**Cons:**
-- Rough channel surfaces (Ra ~1-5 um) — problematic for some applications
-- Limited resolution (~100 um minimum practical feature)
-- Heat-affected zone can cause material reflow and bulging at edges
-- Gaussian beam profile creates V-shaped or rounded channel cross-sections
-- Depth control is approximate
-- Limited to materials that absorb at 10.6 um (PMMA, PS — not COC/COP easily)
+### Cons
+- Resolution limited to ~100-200 um for reliable microfluidic channels
+- Rough, tapered channel walls (heat-affected zone)
+- V-shaped or U-shaped channel profiles (not rectangular)
+- Thermal damage zone creates recast/burr at channel edges
+- Not suitable for sub-100 um features
+- Inconsistent depth control at small feature sizes
+- Only works with thermoplastics that absorb at 10.6 um (PMMA, PS, PC, COC)
 
-### Typical Lead Time
-
-Design to working prototype: **hours to 1 day**
+### When to Use
+- Rapid prototyping with channels > 200 um
+- Layer-based microfluidic devices (cut-and-stack assembly)
+- Educational settings and teaching labs
+- When same-day turnaround is essential
+- Budget-constrained projects
+- Droplet generators and simple mixing geometries
 
 ---
 
-## 2. Femtosecond Laser Machining for Glass Microfluidics
+## 2. Femtosecond Laser Machining for Glass (SLE Technology)
 
 ### What It Is
+Selective Laser-induced Etching (SLE) is a two-step process for fabricating true 3D microstructures inside transparent glass substrates (primarily fused silica/quartz). A femtosecond laser modifies the glass structure internally without surface damage, then chemical etching selectively removes the modified regions. This creates monolithic, fully enclosed 3D channel networks with no bonding required.
 
-Femtosecond (fs) lasers deliver ultrashort pulses (< 1 ps) that modify transparent materials through multiphoton absorption. This enables 3D internal structuring of glass without surface damage. Two main approaches:
+### How the SLE Process Works
 
-1. **Femtosecond Laser Irradiation followed by Chemical Etching (FLICE)** — also called Selective Laser-induced Etching (SLE): laser modifies glass internally, then preferential wet etching (KOH or HF) removes modified regions
-2. **Direct ablation** — higher pulse energies directly remove material
+**Step 1 -- Laser Modification:**
+A femtosecond laser (typically ~300-800 fs pulse duration, 515 nm or 1030 nm wavelength) is tightly focused inside the glass substrate. The ultrashort pulses create nonlinear absorption at the focal point, locally modifying the glass structure (creating nanogratings, densification, or other structural changes) without melting or cracking. The laser scans a 3D pattern corresponding to the desired channel/cavity geometry.
 
-### Key Manufacturers/Services
+**Step 2 -- Chemical Etching:**
+The laser-modified glass is immersed in an etchant:
+- **KOH** (potassium hydroxide, typically 8-10 M at 80-90C): Slower but safer; selectivity ratio ~1000:1 (modified:unmodified glass). Preferred for high-precision work.
+- **HF** (hydrofluoric acid, typically 2-5%): Faster etching but lower selectivity (~100:1). More hazardous.
+- **HF/HNO3 mixtures**: Higher etch rates for bulk removal.
 
-| Company | Technology | Capabilities | Substrate | Approx. System Cost |
-|---------|-----------|-------------|-----------|-------------------|
-| **LightFab** (Aachen, Germany) | SLE (Selective Laser-induced Etching) via LightFab 3D Printer | 3D channels in fused silica; max depth 5-7 mm; area up to 200x200 mm; pore sizes down to 5 um | Fused silica (quartz glass) | ~$500K-$1M+ |
-| **FEMTOprint** (Moutier, Switzerland) | Femtosecond laser + etching | 3D glass microfluidics, micro-optics, micromechanics integrated; sub-micron features; MedTech focus | Fused silica, borosilicate | ~$500K-$1M (system); custom parts as service |
-| **Optec** (Frameries, Belgium) | Femtosecond and excimer laser micromachining | Contract manufacturing, systems | Various | $200K-$500K (systems) |
+The etchant preferentially attacks the laser-modified zones, creating channels and cavities while leaving the surrounding glass intact.
 
-### Resolution and Feature Sizes
+### Key Equipment
 
-| Parameter | FLICE/SLE | Direct fs Ablation |
-|-----------|-----------|-------------------|
-| Minimum channel diameter | 10-50 um | 5-20 um |
-| Minimum wall thickness | ~20 um | ~10 um |
-| Surface roughness (channel) | Ra 100-500 nm (post-etch) | Ra 50-200 nm |
-| Aspect ratio | Up to 50:1 | Up to 10:1 |
-| 3D capability | Full 3D embedded channels | Surface and shallow 3D |
-| Maximum processing depth | 5-7 mm in fused silica | ~0.5-1 mm |
-| Positional accuracy | < 1 um | < 1 um |
+| System | Manufacturer | Laser | Working Volume | Key Features | Price (approx.) |
+|---|---|---|---|---|---|
+| **LightFab 3D Printer** | LightFab GmbH (Aachen, DE) | fs laser, <2 um focus | Scientific: 120x80x20 mm; Manufacturing: 200x200x150 mm | 3D micro scanner + 3-axis stage; SLE + 2PP + waveguide writing | ~$300,000-600,000 (est.) |
+| **Femtoprint** | FEMTOprint SA (Muzzano, CH) | fs laser | Various configs | SLE specialist; contract manufacturing available | ~$200,000-500,000 (est.) |
+| **Femtika Laser Nanofactory** | Femtika (Vilnius, LT) | fs laser (various wavelengths) | 160x160 mm working area | Multi-process: 2PP + SLE + ablation in one tool | $415,000+ |
+| **Custom SLE setups** | University labs | Commercial fs lasers + stages | Varies | Often built from components; lower cost but less integrated | ~$100,000-300,000 |
 
-### Cost Considerations
+### Achievable Features
 
-| Item | Cost Range |
-|------|-----------|
-| Femtosecond laser system | $200K-$1M+ |
-| LightFab 3D Printer | ~$500K-$1M |
-| Contract manufacturing (per device) | $50-$500 depending on complexity |
-| Fused silica substrate | $5-$50 per piece |
-| Processing time per chip | Minutes to hours (depends on channel volume) |
+| Parameter | Typical | Best Demonstrated |
+|---|---|---|
+| Minimum channel width | 5-20 um | ~1 um |
+| Minimum channel height | 5-20 um | ~1 um |
+| Aspect ratio (depth:width) | 10:1 typical | >100:1 demonstrated |
+| Surface roughness (Ra) | 50-200 nm (KOH) | <50 nm with optimized parameters |
+| Positional accuracy | ~1-2 um | Sub-micron with interferometric stages |
+| Maximum channel length | Limited by etchant diffusion | Several cm (with etch access ports) |
+| Substrate thickness | Up to 10+ mm | Standard: 0.5-2 mm fused silica wafers |
 
-### Advantages of Femtosecond Laser Glass Processing
+### Materials
+- **Fused silica** (Corning 7980, Heraeus Suprasil): Primary material; excellent optical, chemical, and thermal properties
+- **Borosilicate glass** (Borofloat 33, Schott D263): Lower cost; good for many applications but lower selectivity
+- **Sapphire**: Possible but more challenging; higher hardness
+- **Crystalline quartz**: Possible with adapted parameters
 
-- **True 3D channels** — buried channels at any depth and orientation, impossible with planar lithography
-- **Monolithic** — no bonding required (channels are etched inside bulk glass)
-- **No cleanroom** — laser processing does not require cleanroom environment
-- **Fused silica properties** — ultimate chemical resistance, optical transparency (UV to IR), thermal stability, biocompatibility
-- **Integration** — can combine microfluidics, micro-optics, and waveguides in single substrate
-- **Rapid design iteration** — CAD-to-part with no masks
+### Advantages of SLE Glass Microfluidics
+- **Monolithic construction**: No bonding required; channels are buried inside a single piece of glass
+- **True 3D channels**: Channels can cross over/under each other, spiral, branch in 3D
+- **Excellent optical properties**: Fused silica is transparent from deep UV (180 nm) to near-IR (2.5 um)
+- **Chemical inertness**: Fused silica resists virtually all solvents, acids (except HF), and bases
+- **Thermal stability**: Operating temperature up to 1000C+
+- **No delamination**: Monolithic structure eliminates bonding failures
+- **Biocompatibility**: Glass is inherently biocompatible
+- **Pressure resistance**: Can withstand very high pressures (hundreds of bar)
 
 ### Limitations
+- **Slow process**: Laser writing + etching can take hours to days for complex designs
+- **Expensive equipment**: $200,000-600,000+ for commercial SLE systems
+- **Etch access required**: Long channels need intermediate access ports for etchant diffusion
+- **Channel length limited**: Etchant must diffuse in from access points; practical limit ~5-10 mm per access port
+- **Surface roughness**: KOH etching leaves ~100-200 nm roughness; additional smoothing may be needed
+- **Substrate cost**: High-quality fused silica wafers are expensive ($50-200+ per wafer)
 
-- Slow for high volumes (serial writing process)
-- High capital cost
-- Channel surface roughness can require post-processing
-- Etching step adds time and introduces selectivity constraints
-- Limited to materials with suitable nonlinear absorption
+### Contract Manufacturing
+Both LightFab and FEMTOprint offer contract manufacturing services for SLE glass microfluidics, providing access to the technology without capital equipment purchase. Typical lead times: 2-6 weeks.
 
 ---
 
 ## 3. Excimer Laser Ablation
 
 ### What It Is
+Excimer lasers produce high-energy UV pulses that directly break molecular bonds in polymers (photochemical ablation) rather than heating/melting. This "cold ablation" creates cleaner, sharper features than CO2 laser processing, with minimal heat-affected zone.
 
-Excimer lasers produce high-energy UV pulses at specific wavelengths. The UV photons break chemical bonds in polymers directly (photochemical ablation), producing clean channels with minimal heat-affected zone compared to CO2 lasers.
+### Laser Types and Wavelengths
 
-### Excimer Laser Types
+| Excimer Gas | Wavelength | Photon Energy | Best For |
+|---|---|---|---|
+| **ArF** | 193 nm | 6.4 eV | Highest precision; PMMA, PTFE, most polymers |
+| **KrF** | 248 nm | 5.0 eV | General polymer ablation; most common for microfluidics |
+| **XeCl** | 308 nm | 4.0 eV | Larger features; lower cost per pulse |
+| **XeF** | 351 nm | 3.5 eV | Limited polymer absorption; less common |
 
-| Laser Type | Wavelength | Photon Energy | Best Materials |
-|-----------|-----------|---------------|----------------|
-| **ArF** | 193 nm | 6.4 eV | PMMA, PS, PC, polyimide — best overall for polymers |
-| **KrF** | 248 nm | 5.0 eV | PMMA, polyimide, PET |
-| **XeCl** | 308 nm | 4.0 eV | Polyimide, PET, some polymers |
-| **XeF** | 351 nm | 3.5 eV | Limited polymer absorption |
+Additionally, frequency-tripled (355 nm) and frequency-quadrupled (266 nm) Nd:YAG lasers can serve as alternatives to excimer lasers, with the advantage of solid-state reliability.
 
-### Key Parameters
+### Achievable Features
 
-| Parameter | Typical Range |
-|-----------|--------------|
-| Fluence | 0.1-10 J/cm2 per pulse |
-| Repetition rate | 1-500 Hz |
-| Pulse duration | 10-30 ns |
-| Ablation rate | 0.1-1 um per pulse (material dependent) |
-| Minimum feature (with mask) | 1-5 um |
-| Minimum feature (direct write) | 5-20 um |
+| Parameter | Typical Range | Notes |
+|---|---|---|
+| Channel width | 10-500 um | Mask-defined; 10 um achievable with projection optics |
+| Channel depth per pulse | 0.1-1 um | Material and fluence dependent |
+| Total depth | 1-500 um | Multiple pulses; controlled by pulse count |
+| Wall roughness (Ra) | 50-500 nm | Better than CO2; worse than lithography |
+| Aspect ratio | Up to ~10:1 | Limited by beam divergence into channel |
+| Taper angle | 1-5 degrees | Slight taper is inherent |
 
-### Process Approaches
+### Process Modes
+- **Direct write**: Focused beam scans across substrate; flexible but slower
+- **Mask projection**: Excimer beam illuminates a chrome-on-quartz mask; demagnified image projected onto substrate. Higher throughput, better feature definition.
+- **Step-and-repeat**: Mask projection with substrate stepping for large-area patterning
 
-1. **Mask projection** — UV beam illuminates a metal mask; demagnification optics project the pattern onto the substrate. Produces the entire channel pattern in parallel.
-2. **Direct write** — focused beam scans across the surface. More flexible but slower.
-3. **Step-and-repeat** — combination of mask projection with stage motion for large areas.
+### Materials Suitable for Excimer Ablation
 
-### Equipment and Cost
+| Material | 248 nm Ablation Threshold (mJ/cm2) | Etch Rate (um/pulse) | Quality |
+|---|---|---|---|
+| **PMMA** | ~100-200 | 0.1-0.5 | Excellent; clean cuts |
+| **Polycarbonate (PC)** | ~150-250 | 0.1-0.3 | Good |
+| **Polyimide (Kapton)** | ~50-100 | 0.05-0.3 | Excellent; gold standard |
+| **PET** | ~100-200 | 0.1-0.3 | Good |
+| **COC/COP** | ~150-300 | 0.05-0.2 | Good |
+| **PDMS** | >500 | Poor | Nano/micro cracks observed |
+| **PGS, APS** | Varies | Varies | Good; no micro-cracks |
 
-| Component | Cost Range |
-|-----------|-----------|
-| Excimer laser source | $50K-$200K |
-| Beam delivery / projection optics | $20K-$100K |
-| Motion stage (precision) | $10K-$50K |
-| Complete micromachining station | $100K-$400K |
-| Mask fabrication | $500-$5,000 per mask |
-| Contract service (per design) | $1K-$10K |
+### Equipment
+Excimer laser micromachining systems are specialized industrial/research tools:
+- **Optec (Belgium)**: WS-Flex series -- dedicated microfluidic ablation workstations
+- **Coherent (formerly LPKF/Resonetics)**: Excimer micromachining systems
+- **IPG Photonics / Oxford Lasers**: UV laser micromachining platforms
+- **Cost**: $100,000-500,000+ for a complete system with mask projection optics
 
-### Resolution
+### Pros
+- Cleaner ablation than CO2 laser (photochemical vs. thermal)
+- Minimal heat-affected zone
+- Good wall quality with controlled roughness
+- Mask projection enables parallel processing of complex patterns
+- Works with a wide range of polymers
+- Can simultaneously modify surface chemistry (hydrophilicity change)
 
-| Attribute | Performance |
-|-----------|------------|
-| Minimum feature (mask projection) | 1-5 um |
-| Channel depth control | +/- 0.5-2 um |
-| Surface roughness | Ra 10-100 nm (much smoother than CO2) |
-| Sidewall angle | Near-vertical for many polymers |
-| Aspect ratio | Up to 10:1 |
+### Cons
+- Expensive equipment ($100,000-500,000+)
+- Excimer lasers require toxic/corrosive gas handling (fluorine, chlorine)
+- Limited to surface ablation (not buried channels)
+- Slower than CO2 for simple cuts
+- Mask fabrication adds cost and lead time
+- Feature depth controlled by pulse count (slower for deep features)
+- Not widely available outside specialized facilities
 
-### Pros and Cons
-
-**Pros:**
-- Clean photochemical ablation — minimal thermal damage
-- Excellent surface quality (Ra 10-100 nm)
-- High resolution (1-5 um features with mask projection)
-- Parallel processing with mask (high throughput)
-- Can modify surface chemistry simultaneously (improved wettability)
-- Works on many polymers including PMMA, PS, PC, polyimide
-
-**Cons:**
-- High equipment cost
-- Requires toxic gas handling (fluorine, chlorine, krypton)
-- Mask-based approach reduces flexibility
-- Limited depth per pulse — slow for deep channels
-- Gas refills and tube maintenance
-- Not commonly available outside specialized facilities
+### When to Use
+- Polymer microfluidics requiring 10-100 um features with clean walls
+- When CO2 laser resolution (~100+ um) is insufficient
+- Mass production of polymer microfluidic patterns (mask projection)
+- When surface chemistry modification is desired simultaneously
+- Polyimide-based flexible microfluidics
 
 ---
 
-## 4. UV Laser Micromachining (DPSS and Fiber Lasers)
+## 4. Glass Wet Etching (HF)
 
 ### What It Is
+Wet chemical etching of glass substrates using hydrofluoric acid (HF) or buffered oxide etch (BOE) is one of the oldest and most established methods for fabricating glass microfluidic channels. The process is isotropic (etches equally in all directions), producing rounded channel profiles.
 
-Solid-state UV lasers (typically frequency-tripled Nd:YAG at 355 nm or frequency-quadrupled at 266 nm) provide a more accessible alternative to excimer lasers. These diode-pumped solid-state (DPSS) or UV fiber lasers are maintenance-free compared to gas-based excimer systems.
+### Process Steps
+
+1. **Substrate preparation**: Clean glass wafer (fused silica, borosilicate, soda-lime) with piranha or RCA clean
+2. **Mask deposition**: Deposit etch-resistant masking layer:
+   - **Cr/Au** (20 nm Cr + 200 nm Au): Most common; good HF resistance for depths up to ~100 um
+   - **Cr/Au/Cr** trilayer: For deeper etches
+   - **Amorphous silicon (a-Si)**: For deep etches in concentrated HF
+   - **Polysilicon**: Alternative for deep etches
+   - **Photoresist alone**: Only for very shallow etches (<5 um) in dilute HF/BOE
+3. **Photolithography**: Spin-coat photoresist, expose, develop to define channel pattern
+4. **Mask patterning**: Wet-etch the metal mask through the photoresist pattern
+5. **Glass etching**: Immerse in HF solution; etch rate depends on glass type and HF concentration
+6. **Strip mask**: Remove remaining metal mask layers
+7. **Clean and bond**: Prepare surface for bonding to cover plate
+
+### Etch Rates
+
+| Glass Type | Etchant | Etch Rate | Notes |
+|---|---|---|---|
+| **Fused silica (SiO2)** | 49% HF | ~1.3 um/min | Slowest; most uniform |
+| **Fused silica** | BOE (6:1) | ~0.1 um/min | Very controlled; for shallow features |
+| **Borosilicate (Pyrex 7740)** | 49% HF | ~8 um/min | Fast but less uniform |
+| **Borosilicate** | 10% HF | ~1-2 um/min | More controllable |
+| **Soda-lime glass** | 49% HF | ~5-10 um/min | Cheapest glass; less uniform |
+| **Borofloat 33** | 49% HF | ~7-8 um/min | Common for microfluidics |
+
+### Feature Characteristics
+
+| Parameter | Value | Notes |
+|---|---|---|
+| Minimum channel width | ~5-10 um (defined by lithography) | Actual etched width = mask width + 2x etch depth (isotropic undercutting) |
+| Typical channel depth | 10-200 um | Deeper requires more robust masks |
+| Maximum practical depth | ~500 um | Limited by mask durability and uniformity |
+| Channel profile | Hemispherical/rounded | Due to isotropic etching |
+| Surface roughness (Ra) | ~1-10 nm | Extremely smooth; best of all microfabrication methods |
+| Aspect ratio | ~0.5:1 maximum | Fundamental limit of isotropic etching |
+
+### Multilevel Etching
+Deep multilevel wet etching of fused silica has been demonstrated using BOE solution with multiple lithography-etch cycles. This enables channels at different depths within the same substrate, useful for complex microfluidic networks with 3D crossing channels.
+
+### Safety -- CRITICAL
+
+**HF is one of the most dangerous chemicals in the laboratory.** It can cause severe, potentially fatal burns, and can be absorbed through the skin causing systemic fluoride poisoning (hypocalcemia, cardiac arrest).
+
+**Mandatory Safety Requirements:**
+- **Buddy system**: Never work with HF alone; at least one other trained person must be in the lab
+- **PPE**: Double nitrile gloves (or neoprene gloves), face shield, chemical splash goggles, acid-resistant apron, closed-toe shoes
+- **Fume hood**: All HF work must be performed in a properly functioning chemical fume hood or laminar flow bench
+- **Calcium gluconate gel**: Must be immediately available at the workstation; apply to any skin exposure immediately
+- **Training**: Institutional HF safety training is mandatory before handling
+- **Spill kit**: HF-specific spill kit with calcium carbonate neutralizer
+- **PTFE/HDPE containers**: HF etches glass; use only compatible plastic containers
+- **Emergency procedures**: Know the location of safety shower, eyewash, and emergency contacts
+- **Medical monitoring**: Anyone with skin exposure (even if asymptomatic) must seek immediate medical evaluation
+
+### Equipment
+- **Wet bench with HF-rated fume hood**: $20,000-100,000
+- **PTFE or polypropylene etch tanks**: $500-5,000
+- **Temperature-controlled bath** (for heated etch solutions): $2,000-10,000
+- **Cleanroom with HF-rated exhaust**: Required for consistent results
+- **Profilometer/microscope**: For etch depth measurement
+- **Spin coater, mask aligner**: Standard lithography equipment for mask patterning
+
+### Pros
+- Extremely smooth channel surfaces (Ra ~1-10 nm) -- best optical quality
+- Well-established, mature process
+- Excellent repeatability and uniformity
+- Low cost per wafer once setup is complete
+- Compatible with standard cleanroom photolithography
+- Glass substrate advantages (chemical resistance, optical transparency, biocompatibility)
+
+### Cons
+- **Isotropic**: Cannot produce vertical sidewalls or high aspect ratio channels
+- **HF hazard**: Extremely dangerous chemical requiring rigorous safety protocols
+- **Undercutting**: Channel width = mask opening + 2x etch depth; limits minimum feature density
+- **Mask erosion**: Metal masks degrade during long etches; limits maximum depth
+- **Cleanroom required**: Full photolithography process needed
+- **Slow for deep features**: Hours for channels > 100 um deep
+- **Environmental concerns**: HF waste disposal is regulated and expensive
+
+### When to Use
+- When optically smooth channels are critical (fluorescence microscopy, optical detection)
+- Established, validated microfluidic designs for production
+- When channels > 10 um wide with rounded profiles are acceptable
+- Chemical analysis applications requiring glass inertness
+- When bonded to silicon (anodic bonding) or glass (thermal/fusion bonding)
+
+---
+
+## 5. Silicon Dry Etching (DRIE / Bosch Process)
+
+### What It Is
+Deep Reactive Ion Etching (DRIE) is a plasma-based dry etching technique that produces deep, high-aspect-ratio trenches and channels in silicon with nearly vertical sidewalls. The Bosch process (patented by Robert Bosch GmbH) is the most widely used DRIE method, alternating between isotropic silicon etching and sidewall passivation.
+
+### How the Bosch Process Works
+The Bosch process repeats two alternating plasma cycles:
+
+1. **Etch cycle** (SF6 plasma, 5-15 seconds): Isotropic etching of exposed silicon by fluorine radicals. Etches ~0.5-2 um per cycle.
+2. **Passivation cycle** (C4F8 plasma, 3-10 seconds): Deposits a thin fluorocarbon polymer (Teflon-like) film on all surfaces, including sidewalls.
+
+In the next etch cycle, the passivation is removed from horizontal surfaces by ion bombardment but remains on the vertical sidewalls, protecting them from lateral etching. This creates the characteristic scalloped sidewalls (typically 50-200 nm scallop depth) with overall near-vertical profiles.
+
+### Key Process Parameters
+
+| Parameter | Typical Range | Effect |
+|---|---|---|
+| Etch rate | 1-20 um/min | Depends on feature size, aspect ratio, loading |
+| Selectivity (Si:photoresist) | 50:1 to 200:1 | Higher with hard masks (SiO2, metal) |
+| Selectivity (Si:SiO2) | 100:1 to 300:1 | Excellent; SiO2 as etch stop |
+| Sidewall angle | 88-90 degrees | Near vertical; tunable |
+| Scallop depth | 50-200 nm | Reduced with shorter cycle times |
+| Aspect ratio | Up to 50:1 | Higher with optimized recipes |
+| Etch uniformity | 2-10% across wafer | Load-dependent; better in modern tools |
+| Minimum feature | ~1-2 um | Lithography-limited |
 
 ### Equipment
 
-| Type | Wavelength | Pulse Duration | Typical Power | Approx. Cost |
-|------|-----------|---------------|---------------|-------------|
-| DPSS Nd:YAG (3rd harmonic) | 355 nm | 10-30 ns | 3-20 W | $30K-$100K |
-| DPSS Nd:YAG (4th harmonic) | 266 nm | 10-30 ns | 1-5 W | $50K-$150K |
-| UV fiber laser | 355 nm | 1-100 ns (adjustable) | 5-50 W | $20K-$80K |
-| Picosecond UV | 355 nm | 10-15 ps | 1-10 W | $80K-$200K |
+| System | Manufacturer | Key Features | Wafer Size | Price (approx.) |
+|---|---|---|---|---|
+| **PlasmaPro 100 Estrelas** | Oxford Instruments | Total flexibility for DSiE; ICP source; excellent uniformity | Up to 200 mm | ~$500,000-800,000 |
+| **PlasmaPro DSiE** | Oxford Instruments | Dedicated DRIE tool; Bosch and cryo processes | Up to 200 mm | ~$400,000-700,000 |
+| **Rapier DRIE** | SPTS Technologies (Orbotech) | High-throughput production tool; Bosch + non-switched etching | Up to 200 mm | ~$500,000-1,000,000 |
+| **Versaline DSE** | Plasma-Therm | Dual ICP chambers; Bosch process; flexible configurations | Up to 200 mm | ~$400,000-800,000 |
+| **RIE-800iPB** | Samco Inc. | ICP-RIE for Si DRIE; compact footprint | Up to 200 mm | ~$300,000-600,000 |
+| **ULVAC NLD** | ULVAC | Neutral loop discharge; high-rate DRIE | Up to 300 mm | ~$500,000-1,000,000 |
 
-### Capabilities
+### Achievable Features for Microfluidics
 
-| Parameter | Range |
-|-----------|-------|
-| Minimum feature | 5-25 um |
-| Ablation rate | 0.1-5 um/pulse (material dependent) |
-| Surface roughness | Ra 50-500 nm |
-| Depth control | +/- 2-10 um |
-| Materials | PMMA, PS, PC, polyimide, ceramics, thin metals |
+| Feature | Typical | Best Demonstrated |
+|---|---|---|
+| Channel width | 2-500 um | Down to ~1 um with e-beam lithography |
+| Channel depth | 10-500 um | Through-wafer (525 um) common |
+| Aspect ratio | 10:1 to 30:1 routine | >50:1 demonstrated |
+| Sidewall roughness (scallops) | 50-200 nm | <20 nm with optimized short-cycle Bosch |
+| Through-silicon vias (TSV) | 5-100 um diameter | Standard for 3D microfluidics |
+| Etch rate | 3-15 um/min typical | >20 um/min in high-rate modes |
 
-### When to Use UV DPSS vs. CO2 vs. Excimer
+### Masking for DRIE
 
-| Criterion | CO2 | UV DPSS (355 nm) | Excimer (193/248 nm) | Femtosecond |
-|-----------|-----|-------------------|---------------------|-------------|
-| Resolution | 50-200 um | 5-25 um | 1-5 um | 1-10 um |
-| Surface quality | Poor | Moderate | Excellent | Good-Excellent |
-| Cost | $5K-$50K | $30K-$150K | $100K-$400K | $200K-$1M |
-| Maintenance | Low | Low | High (gas) | Moderate |
-| Glass processing | No | Limited | Limited | Yes (3D) |
-| Speed | Fast | Moderate | Fast (mask) | Slow |
-| Cleanroom needed | No | No | No | No |
-| Best for | PMMA prototyping | Mid-resolution polymer | High-res polymer | Glass, 3D |
+| Mask Material | Selectivity vs. Si | Max Etch Depth | Notes |
+|---|---|---|---|
+| **Photoresist (thick, AZ4620)** | ~50-100:1 | ~200-300 um | Easiest; limited depth |
+| **SiO2 (thermal or PECVD)** | ~100-300:1 | 500+ um | Standard for deep etches |
+| **Al** | ~100:1 | ~200-500 um | Good; easy to deposit |
+| **Cr** | ~50:1 | ~100-200 um | Common |
+| **Ni (electroplated)** | ~200:1+ | 500+ um | For very deep etches |
+| **SiN** | ~100-200:1 | 300+ um | Standard MEMS mask |
 
----
+### Alternative DRIE Methods
+- **Cryogenic DRIE**: Substrate cooled to -100 to -120C; SF6/O2 chemistry provides sidewall passivation through SiOxFy formation. No scalloping -- smooth sidewalls. Available on Oxford PlasmaPro systems.
+- **STiGer process**: Continuous etch with simultaneous deposition; smoother sidewalls than Bosch with comparable etch rates. Emerging alternative.
+- **Non-switched / tapered etching**: Continuous process for tapered profiles; useful for fluidic interfaces and nozzles.
 
-# Part II: Glass & Silicon Microfluidics
+### Pros
+- **Near-vertical sidewalls**: Rectangular channel cross-sections (unlike isotropic wet etching)
+- **High aspect ratios**: Up to 50:1, enabling deep narrow channels
+- **Precise depth control**: Etch rate well-characterized; endpoint detection available
+- **Through-wafer etching**: 525 um standard wafer thickness routinely etched through
+- **Excellent repeatability**: Automated plasma process with recipe control
+- **Fine features**: Down to ~1 um with appropriate lithography
+- **Clean process**: No wet chemistry during etching itself
 
-## 5. Wet Etching
+### Cons
+- **Expensive equipment**: $300,000-1,000,000 per DRIE tool
+- **Cleanroom required**: Full semiconductor fabrication environment
+- **Sidewall scalloping**: Bosch process leaves periodic roughness (can be smoothed)
+- **Silicon is opaque**: Cannot visualize flow through silicon; requires glass capping
+- **Loading effects**: Etch rate varies with feature density and size (ARDE -- Aspect Ratio Dependent Etching)
+- **Etch lag**: Smaller features etch slower than larger features
+- **Process expertise required**: Recipe optimization for specific geometries
 
-### Glass Wet Etching (HF-based)
-
-#### Process Overview
-
-Glass is etched using hydrofluoric acid (HF) solutions. The process is **isotropic** — etching proceeds equally in all directions, producing rounded channel cross-sections.
-
-#### Process Steps
-
-1. **Deposit masking layer** — Cr/Au (50/500 nm) or amorphous silicon sputtered onto glass
-2. **Photolithography** — spin-coat photoresist, expose, develop
-3. **Etch mask pattern** — wet etch metal mask to expose glass
-4. **HF etching** — immerse in HF solution; etch time controls depth
-5. **Strip mask** — remove remaining Cr/Au
-6. **Clean** — thorough rinsing
-7. **Bond** — seal with second glass wafer or PDMS
-
-#### Etch Rates
-
-| Glass Type | HF Concentration | Etch Rate | Notes |
-|-----------|-----------------|-----------|-------|
-| Borosilicate (Pyrex 7740, Borofloat 33) | 49% HF | ~8 um/min | Most common for microfluidics |
-| Borosilicate | 10% HF | ~1.5 um/min | Better control for shallow channels |
-| Fused silica (quartz) | 49% HF | ~1.3 um/min | Much slower — more resistant |
-| Soda-lime glass | 49% HF | ~5-7 um/min | Faster but less controlled, cheaper substrate |
-| Borosilicate | BOE (buffered oxide etch) | ~0.5-1 um/min | Most controlled, smoothest surface |
-
-#### Masking Materials
-
-| Mask | Thickness | HF Resistance | Notes |
-|------|-----------|---------------|-------|
-| Cr/Au | 50/500 nm | Good — hours in 49% HF | Industry standard; Au resists HF, Cr is adhesion layer |
-| Amorphous silicon | 100-500 nm | Moderate | CMOS compatible alternative |
-| Photoresist alone | 1-10 um | Poor — minutes in concentrated HF | Only for very shallow etches or dilute HF |
-| SiN (LPCVD) | 100-500 nm | Excellent | Best for deep etches |
-| Polysilicon | 0.5-1 um | Good | Alternative to Cr/Au |
-
-#### Key Characteristics
-
-- **Isotropic** etch profile: undercut equals depth (1:1 aspect ratio limit)
-- Maximum practical depth: ~100-200 um (limited by mask erosion and undercut)
-- Surface roughness: Ra 1-10 nm (very smooth — excellent for optical applications)
-- Channel width = mask opening + 2x depth (due to undercut)
-
-#### Equipment Required
-
-| Equipment | Purpose | Approx. Cost |
-|-----------|---------|-------------|
-| Fume hood (HF-rated) | Safety containment | $10K-$30K |
-| HF-compatible wet bench | Chemical processing | $20K-$80K |
-| Spin coater | Photoresist application | $5K-$15K |
-| Mask aligner | UV exposure | $50K-$300K |
-| Sputter/evaporator | Mask deposition (Cr/Au) | $50K-$300K |
-| Profilometer | Depth measurement | $20K-$80K |
-| **Total cleanroom setup** | | **$200K-$800K+** |
-
-#### Safety
-
-HF is extremely hazardous. Requires:
-- Dedicated HF-rated fume hood and wet bench
-- Calcium gluconate gel on hand at all times
-- HF-specific PPE (face shield, double gloving with neoprene, apron)
-- Buddy system — never work with HF alone
-- HF exposure training for all personnel
-- Emergency shower and eyewash within 10 seconds travel
-
-### Silicon Wet Etching (KOH/TMAH)
-
-#### Process Overview
-
-Silicon is etched **anisotropically** by KOH or TMAH — the etch rate depends on crystallographic orientation. {111} planes etch ~100-400x slower than {100} planes, producing V-grooves and flat-bottomed trenches with 54.7-degree sidewalls in (100) silicon.
-
-#### Etchant Comparison
-
-| Property | KOH | TMAH |
-|----------|-----|------|
-| Typical concentration | 30-40 wt% | 20-25 wt% |
-| Temperature | 60-80 deg C | 80-90 deg C |
-| Etch rate {100} | 0.5-1.5 um/min | 0.5-1.0 um/min |
-| {100}:{111} selectivity | ~400:1 | ~30-50:1 |
-| SiO2 selectivity | ~200:1 | ~5000:1 |
-| CMOS compatible | No (K+ contamination) | Yes |
-| Surface roughness | Smooth | Smooth (with IPA additive) |
-| Mask material | SiO2 or Si3N4 | SiO2 or Si3N4 |
-| Cost | Very low | Moderate |
-| Handling | Caustic | Caustic, toxic fumes |
-
-#### Achievable Geometries
-
-| Feature | (100) Wafer | (110) Wafer |
-|---------|------------|------------|
-| Channel profile | V-groove (54.7 deg walls) or flat bottom | Vertical walls (perpendicular {111} planes) |
-| Aspect ratio | Limited by 54.7 deg angle | High aspect ratio possible |
-| Minimum width | ~1-2 um | ~1-2 um |
-| Maximum depth | Through-wafer (500+ um) | Through-wafer |
-| Depth control | +/- 0.5 um with timed etch | +/- 0.5 um |
-
-#### Process Steps
-
-1. **Grow/deposit mask** — thermal SiO2 (for moderate etch depths) or LPCVD Si3N4 (for deep etches)
-2. **Photolithography** — pattern the mask layer
-3. **Etch mask** — BOE for SiO2, hot phosphoric acid for Si3N4
-4. **KOH/TMAH etch** — timed immersion at controlled temperature
-5. **Clean** — piranha or SC-1 clean
-6. **Bond** — anodic bonding to glass, or fusion bonding to another silicon wafer
+### When to Use
+- High-aspect-ratio channels with vertical sidewalls required
+- Integration with silicon-based sensors (piezoresistive, capacitive)
+- Through-wafer fluidic vias and interconnects
+- MEMS-integrated microfluidics (valves, pumps, actuators)
+- Mass production of silicon microfluidic devices
+- When thermal conductivity of silicon is advantageous (PCR, thermal management)
+- When electrical functionality is integrated (electrodes, heaters)
 
 ---
 
-## 6. Dry Etching — DRIE (Deep Reactive Ion Etching)
+## 6. Glass-Glass Thermal Bonding and Anodic Bonding
+
+### Glass-Glass Thermal (Fusion) Bonding
+
+#### Process
+1. **Surface preparation**: Both glass surfaces must be extremely clean and flat (roughness <1 nm RMS). Clean with piranha (H2SO4:H2O2) or RCA process.
+2. **Surface activation** (optional but recommended): O2 plasma treatment or UV/ozone exposure makes surfaces hydrophilic, enabling bonding at lower temperatures.
+3. **Pre-bonding**: Bring surfaces into contact at room temperature. Van der Waals forces create initial bond (visible as bonding front propagation).
+4. **Thermal annealing**: Heat in furnace to high temperature to convert weak pre-bond to strong covalent bond.
+
+#### Temperature Requirements
+
+| Glass Type | Bonding Temperature | Hold Time | Notes |
+|---|---|---|---|
+| **Fused silica** | 1000-1100C | 2-8 hours | Highest quality; channels must withstand temperature |
+| **Borosilicate (Pyrex)** | 550-650C | 2-6 hours | Below softening point to minimize channel deformation |
+| **Soda-lime** | 500-580C | 2-4 hours | Cheapest glass; lower temperature |
+
+#### Low-Temperature Glass Bonding Alternatives
+
+| Method | Temperature | Bond Strength | Notes |
+|---|---|---|---|
+| **Plasma-activated bonding** | Room temp to 200C | Moderate-high | O2 plasma surface activation; 5-15 MPa bond strength |
+| **UV adhesive bonding** | Room temperature | Moderate | Thin UV-curable adhesive layer; fast but adds interface |
+| **Intermediate layer (SOG)** | 200-400C | Moderate | Spin-on-glass as bonding layer |
+| **HF-assisted bonding** | Room temp to 100C | Moderate | Brief HF dip activates surface; fast bonding |
+
+#### Key Requirements
+- Surface roughness: <1 nm RMS (ideally <0.5 nm)
+- Flatness: <1 um total thickness variation (TTV) across bonding area
+- Particle-free: A single particle >1 um can create unbonded area >1 cm in diameter
+- Cleanroom environment: Essential for reliable bonding
+
+### Glass-Glass Anodic Bonding (with Intermediate Layer)
+
+Standard anodic bonding requires mobile alkali ions, which are absent in pure fused silica. Glass-glass anodic bonding requires an intermediate conductive layer:
+
+- **Thin-film Ti layer** (~80 nm): Deposited on one glass surface by sputtering; bonding at 530C with 100V applied
+- **Thin-film Si layer** (100-500 nm): Sputtered amorphous silicon between glass surfaces; bond at 350-450C with 500-1000V
+- **Thin-film Al layer**: Alternative metallic interlayer
+
+Bond quality: Bubble-free interface achievable when bonding temperature exceeds 275C.
+
+### Pros (Glass-Glass Bonding)
+- All-glass device: best optical properties for imaging through both top and bottom
+- Excellent chemical resistance on all surfaces
+- No material mismatch at bond interface (thermal bonding)
+- Suitable for high-pressure applications
+- Biocompatible
+
+### Cons (Glass-Glass Bonding)
+- Requires extremely clean, flat surfaces
+- High temperatures risk channel deformation (thermal bonding)
+- Slow process (hours in furnace for thermal bonding)
+- Requires cleanroom for reliable results
+- Anodic bonding of glass-glass needs intermediate layer
+- Expensive substrates and processing
+
+---
+
+## 7. Silicon-Glass Anodic Bonding
 
 ### What It Is
-
-DRIE enables deep, high-aspect-ratio etching of silicon with near-vertical sidewalls. The dominant process is the **Bosch process** (patented by Robert Bosch GmbH), which alternates between etching and passivation steps.
-
-### Bosch Process Mechanism
-
-1. **Etch step**: SF6 plasma isotropically etches silicon (~1-5 um per cycle)
-2. **Passivation step**: C4F8 plasma deposits conformal fluorocarbon polymer on all surfaces
-3. **Next etch step**: Ion bombardment preferentially removes passivation from horizontal surfaces; vertical sidewall passivation protects against lateral etching
-4. **Repeat**: Cycles of 5-15 seconds each, hundreds to thousands of cycles for deep features
-
-This creates the characteristic "scalloped" sidewalls (scallop amplitude 50-200 nm).
-
-### Alternative: Cryogenic DRIE
-
-- Substrate cooled to -100 to -120 deg C
-- SiF4 passivation occurs naturally at low temperature
-- Produces smooth sidewalls (no scalloping)
-- Less commonly available
-
-### Equipment
-
-| Manufacturer | Model Series | Key Features | Wafer Size | Approx. Price |
-|-------------|-------------|-------------|-----------|---------------|
-| **Oxford Instruments** | PlasmaPro 100 Estrelas (DSiE) | Flexible Bosch and cryo modes; R&D through production | Up to 200 mm | $500K-$1.5M |
-| **Oxford Instruments** | PlasmaPro 100 Cobra | ICP-RIE for general etching; Bosch capable | Up to 200 mm | $400K-$800K |
-| **SPTS Technologies** | Omega Rapier | High etch rates, production-grade; dual plasma source | Up to 200 mm | $500K-$1.5M |
-| **SPTS Technologies** | DSi-v2 | R&D focused DRIE | Up to 200 mm | $300K-$700K |
-| **Plasma-Therm** | Versaline DSE | Deep silicon etching; modular platform | Up to 200 mm | $400K-$1M |
-| **Samco** | RIE-400iPBc | ICP-RIE with Bosch process | Up to 200 mm | $300K-$600K |
-| **ULVAC** | NLD series | Neutral Loop Discharge; high uniformity | Up to 300 mm | $500K-$1.5M |
-
-### Performance Specifications
-
-| Parameter | Typical | Best Reported |
-|-----------|---------|---------------|
-| Etch rate | 5-20 um/min | >50 um/min |
-| Aspect ratio | 20:1 typical | >50:1 |
-| Sidewall angle | 89-90 deg | 90 +/- 0.5 deg |
-| Scallop amplitude | 50-200 nm | <20 nm (optimized) |
-| Selectivity to SiO2 mask | 100-200:1 | >300:1 |
-| Selectivity to photoresist | 50-100:1 | >150:1 |
-| Uniformity (across wafer) | +/- 2-5% | <1% |
-| Maximum depth | Through-wafer (775 um for 200mm wafer) | >1 mm |
-| Minimum feature | ~1 um | ~0.5 um |
-
-### Cost Considerations
-
-| Item | Cost Range |
-|------|-----------|
-| DRIE equipment | $300K-$1.5M |
-| Operating cost per wafer (gas, power) | $10-$50 |
-| Process time per wafer | 30 min - 4 hours (depth dependent) |
-| Cleanroom access fee (university fab) | $50-$200/hr |
-| Contract DRIE service (per wafer) | $200-$1,000 |
-| Full process (lithography + DRIE) per wafer | $500-$2,000 |
-
-### When to Use DRIE vs. Wet Etching
-
-| Criterion | DRIE (Bosch) | Wet Etch (KOH/TMAH) |
-|-----------|-------------|---------------------|
-| Sidewall profile | Vertical (any geometry) | Crystallographic (54.7 deg or vertical for specific orientations) |
-| Aspect ratio | >20:1 | Limited by crystal planes |
-| Design freedom | Any 2D pattern | Constrained to crystal-aligned features |
-| Surface quality | Scalloped (can be smoothed) | Atomically smooth {111} planes |
-| Cost | High (equipment) | Low (chemicals) |
-| Throughput | Moderate (single wafer) | High (batch, multiple wafers) |
-| Depth uniformity | Good with optimization | Excellent (crystallographic etch stop) |
-| Through-wafer capability | Yes | Yes (with proper masking) |
-
----
-
-## 7. Glass-Glass Bonding
-
-### Thermal (Fusion) Bonding
-
-| Parameter | Details |
-|-----------|---------|
-| **Process** | Two clean, flat glass surfaces brought into contact; heated to near softening point; pressure applied |
-| **Temperature** | 500-650 deg C (borosilicate); 1000+ deg C (fused silica) |
-| **Pressure** | 1-10 kN (light contact) |
-| **Time** | 2-8 hours at temperature |
-| **Surface prep** | Critical — RCA clean or piranha; surfaces must be particle-free, <1 nm roughness |
-| **Bond strength** | Very high (monolithic) |
-| **Advantages** | No intermediate layers, optically transparent bond, chemically inert |
-| **Disadvantages** | High temperature (incompatible with pre-deposited metals/reagents), stringent surface requirements |
-
-### Adhesive Bonding
-
-| Parameter | Details |
-|-----------|---------|
-| **Adhesives** | UV-curable epoxy, SU-8, BCB, silicone |
-| **Temperature** | Room temperature to 200 deg C |
-| **Bond strength** | Moderate to high |
-| **Advantages** | Low temperature, tolerant of surface roughness |
-| **Disadvantages** | Adhesive in channel risk, chemical compatibility limits, outgassing |
-
-### Anodic Bonding (Glass-Glass with Intermediate Layer)
-
-Direct glass-glass anodic bonding is possible using a thin metal intermediate layer (e.g., Ti, 80 nm) or a thin sputtered silicon layer between the glass substrates.
-
-| Parameter | Details |
-|-----------|---------|
-| **Temperature** | 400-530 deg C |
-| **Voltage** | 100-800 V |
-| **Intermediate layer** | Ti (~80 nm) or sputtered Si (~100-500 nm) |
-| **Time** | 30-60 minutes |
-| **Materials** | Borosilicate glass (Corning 7740, Borofloat 33, Tempax) |
-| **Bond strength** | High |
-| **Advantages** | Strong hermetic seal, lower temperature than fusion bonding |
-| **Disadvantages** | Requires intermediate layer deposition, limited glass types |
-
----
-
-## 8. Silicon-Glass Anodic Bonding
-
-### Process Overview
-
-Anodic bonding creates an irreversible, hermetic bond between silicon and alkali-containing glass (typically Pyrex/Borofloat). An electric field at elevated temperature drives Na+ ions away from the interface, creating a strong electrostatic attraction and permanent chemical bond.
+Anodic bonding (also called field-assisted bonding or electrostatic bonding) creates an irreversible hermetic seal between a silicon wafer and a sodium-containing glass wafer by applying heat and a high DC voltage. It is the most common method for capping silicon microfluidic channels with a transparent glass lid.
 
 ### Process Parameters
 
 | Parameter | Typical Range | Optimized |
-|-----------|--------------|-----------|
-| Temperature | 300-450 deg C | 350-400 deg C |
-| Voltage | 200-1200 V | 600-1000 V |
-| Time | 10-60 minutes | 30-45 minutes |
-| Pressure | Contact to 2000 mbar | Process dependent |
-| Atmosphere | Air, N2, or vacuum | Vacuum for sealed cavities |
-| Leakage rate | | < 0.4 x 10^-9 Pa m3/s achievable |
+|---|---|---|
+| Temperature | 300-450C | 350-400C most common |
+| Voltage | 200-1200 V DC | 500-1000V typical |
+| Time | 5-30 minutes | Until current drops to baseline |
+| Atmosphere | Vacuum or N2 | Vacuum preferred for bubble-free bonds |
+| Applied pressure | 0-500 kPa | Moderate contact pressure helps initiate bonding |
 
-### Compatible Materials
+### Low-Temperature Anodic Bonding
+Satisfactory bond quality has been demonstrated at temperatures as low as 200C with higher voltages (2500V) and process times under 1.5 minutes. This is important for preserving temperature-sensitive structures or pre-deposited materials.
 
-| Glass | CTE Match to Si | Notes |
-|-------|----------------|-------|
-| Corning 7740 (Pyrex) | Good | Classic choice, discontinued in some forms |
-| Borofloat 33 (Schott) | Good | Widely available alternative to Pyrex |
-| Tempax (Schott) | Good | Similar to Borofloat |
-| SD-2, SD-4 (Hoya) | Good | Japanese supplier |
+### Mechanism
+1. Silicon wafer placed on hot plate (anode, grounded)
+2. Glass wafer placed on top of silicon
+3. Cathode (point probe or plate) contacts the glass surface
+4. High negative voltage applied to the glass surface
+5. Na+ ions in the glass migrate toward the cathode (away from the Si-glass interface)
+6. Depletion layer forms at the interface, creating a strong electrostatic field
+7. Electrostatic force pulls the glass into intimate contact with silicon
+8. At elevated temperature, oxygen ions diffuse to the interface and form Si-O bonds
+9. Result: permanent, hermetic, covalent bond
 
-**Critical requirement**: Glass must contain mobile Na+ ions (alkali glass). CTE must match silicon (2.6 x 10^-6 /K) to avoid cracking.
+### Compatible Glass Types
 
-### Process Physics
+| Glass | CTE (x10^-6/K) | Na2O Content | Compatibility | Notes |
+|---|---|---|---|---|
+| **Corning Pyrex 7740** | 3.25 | Contains Na2O | Excellent | Gold standard for Si anodic bonding |
+| **Schott Borofloat 33** | 3.25 | Contains Na2O | Excellent | CTE matched to Si (2.6); widely used |
+| **Schott Tempax** | 3.25 | Contains Na2O | Excellent | Similar to Borofloat |
+| **Hoya SD-2** | ~3.2 | Contains Na2O | Good | Alternative supplier |
+| **Fused silica** | 0.55 | **No Na2O** | **Not directly compatible** | Requires intermediate layer or modified process |
+| **Soda-lime glass** | ~8.5 | High Na2O | Poor (CTE mismatch) | Cracks on cooling due to thermal expansion mismatch |
 
-1. Elevated temperature increases Na+ ion mobility in glass
-2. Applied voltage (glass negative) drives Na+ away from glass-silicon interface
-3. Depletion region forms at interface with strong electrostatic field
-4. Electrostatic force pulls surfaces into intimate contact
-5. At contact, oxygen from glass reacts with silicon to form SiO2 — permanent covalent bond
+**Critical requirement**: The glass must contain mobile alkali ions (Na+) and have a CTE close to silicon (2.6 x 10^-6/K at room temperature). Pyrex 7740 / Borofloat 33 (CTE = 3.25) are the standard choices.
 
-### Key Process Factors (by Influence on Bond Quality)
-
-1. **Temperature** — most dominant influence on leakage rate and bond strength
-2. **Time** — second most important factor
-3. **Voltage** — third most important; higher voltage speeds process but risk of dielectric breakdown
+### Surface Preparation Requirements
+- **Roughness**: <10 nm RMS on both surfaces; <1 nm RMS preferred
+- **Cleanliness**: Piranha clean (H2SO4:H2O2) or RCA clean; particle-free surfaces essential
+- **Flatness**: <2 um TTV across bonding area
+- **Oxide on silicon**: Native oxide (~2 nm) is sufficient; thick thermal oxide reduces bond quality
 
 ### Equipment
+- **Commercial bonders**: EVG (EVG520), SUSS MicroTec (SB6/8), AML (AML-AWB): $100,000-500,000
+- **Simple lab setup**: Hot plate + DC power supply (0-1200V) + point probe electrode: $5,000-20,000
+- **Vacuum bonding chamber**: Recommended for bubble-free bonds: $50,000-200,000
 
-| Equipment | Approx. Cost |
-|-----------|-------------|
-| Anodic bonder (manual, research) | $20K-$80K |
-| Automated wafer bonder (EVG, SUSS) | $200K-$800K |
-| Hot plate + DC power supply (DIY) | $1K-$5K |
+### Bond Quality Characterization
+- **Visual inspection**: Bonded areas appear dark (no interference fringes); unbonded areas show Newton's rings
+- **Infrared imaging**: IR camera reveals voids and particles at the interface
+- **Razor blade test**: Wedge inserted at edge; crack should propagate along interface, not into substrates
+- **Leak testing**: Pressurize microfluidic channels to verify hermetic seal
+- **Bond strength**: Typically 10-30 MPa; limited by glass fracture strength
 
-### Pros and Cons
+### Pros
+- **Hermetic seal**: Vacuum-tight, leak-free bond
+- **Strong**: Bond strength approaches glass fracture toughness (~20-30 MPa)
+- **Transparent window**: Glass cap enables optical access to silicon channels
+- **No adhesive**: Clean interface with no outgassing or contamination
+- **Well-characterized**: Decades of MEMS manufacturing experience
+- **Compatible with thin films**: Metal electrodes, oxide layers can be patterned on Si before bonding
+- **Moderate temperature**: 350-400C is compatible with many pre-deposited materials
 
-**Pros:**
-- Hermetic seal (gas-tight)
-- Strong bond (approaching bulk fracture strength)
-- Relatively low temperature (vs. glass fusion bonding)
-- No adhesives or intermediate materials in bond
-- Optically clear bond interface
-- Well-established, reliable process
+### Cons
+- **Requires sodium-containing glass**: Limits glass choice; fused silica not directly compatible
+- **Temperature**: 300-450C may damage temperature-sensitive materials
+- **Requires clean, flat surfaces**: Particles cause unbonded regions
+- **Equipment cost**: Commercial bonders are expensive
+- **Wafer-level process**: Not practical for individual chip bonding (though possible)
+- **Non-reversible**: Once bonded, cannot be separated without destroying device
 
-**Cons:**
-- Limited to alkali-containing glass
-- CTE matching required
-- High voltage (safety considerations)
-- Sodium contamination concern for CMOS devices
-- Requires very clean, smooth surfaces
-- Metal traces near bond area can interfere
+### When to Use
+- Sealing DRIE-etched silicon channels with a transparent glass cap
+- MEMS-integrated microfluidics requiring hermetic encapsulation
+- High-pressure microfluidic devices (bond withstands >10 bar easily)
+- When optical access to silicon channels is needed
+- Production-scale silicon microfluidic devices
+- When long-term reliability and hermeticity are critical
 
 ---
 
-## 9. When to Use Glass/Silicon vs. Polymer
+## 8. When to Choose Glass/Silicon Over Polymers -- Decision Criteria
 
-### Decision Matrix
+### Quick Decision Matrix
 
-| Criterion | Glass | Silicon | Polymer (COC/COP/PMMA) |
-|-----------|-------|---------|------------------------|
-| **Chemical resistance** | Excellent (all solvents, acids, bases) | Good (most solvents; attacked by KOH, HF) | Moderate (polar solvents OK, non-polar attack COC/COP) |
-| **Optical transparency** | Excellent (UV to IR) | Opaque (IR only) | Good visible; COC/COP fair UV |
-| **Autofluorescence** | Very low | N/A (opaque) | Low (COC/COP) to moderate (PMMA) |
-| **Thermal stability** | Excellent (>500 deg C) | Excellent (>500 deg C) | Limited (< Tg, typically 80-150 deg C) |
-| **Surface chemistry** | Well-characterized silanol groups | Native oxide (SiO2-like) | Variable; requires activation |
-| **Biocompatibility** | Excellent, bioinert | Good | Good (COC/COP, PS) |
-| **Gas permeability** | Zero | Zero | Low (COC/COP) to moderate (PMMA) |
-| **Protein adsorption** | Low (with treatment) | Low (with treatment) | Low to moderate |
-| **Fabrication cost (prototype)** | High ($500-$5K/wafer) | High ($200-$2K/wafer) | Low ($1-$50/device) |
-| **Mass production cost** | Very high | High | Very low ($0.10-$2/device) |
-| **Lead time (prototype)** | 2-6 weeks | 2-6 weeks | Hours to days |
-| **Scalability** | Limited (batch, wafer-level) | Good (semiconductor infrastructure) | Excellent (injection molding) |
-| **Design iteration speed** | Slow (new masks, etching) | Slow (new masks, etching) | Fast (new mold or direct write) |
+| Criterion | Polymer (PDMS, PMMA, COC) | Glass (Wet Etch / SLE) | Silicon (DRIE) |
+|---|---|---|---|
+| **Cost per device** | $1-50 | $50-500 | $50-500 |
+| **Setup cost** | $1,000-50,000 | $50,000-500,000 | $200,000-1,000,000 |
+| **Prototyping speed** | Hours | Days-weeks | Days-weeks |
+| **Min. channel size** | 1-10 um (soft litho); 100+ um (laser/3D print) | 5-10 um (wet etch); 1 um (SLE) | 1-2 um (DRIE) |
+| **Channel profile** | Rectangular (soft litho); rounded (laser) | Rounded (wet etch); arbitrary (SLE) | Rectangular (DRIE) |
+| **Aspect ratio** | Low-moderate | Low (wet etch: 0.5:1); high (SLE: >100:1) | High (DRIE: up to 50:1) |
+| **Optical transparency** | Good (PDMS, COC); moderate (PMMA) | Excellent (UV to IR) | Opaque (need glass cap) |
+| **Chemical resistance** | Poor (PDMS swells in organics); moderate (PMMA, COC) | Excellent (resists all except HF) | Excellent (resists most chemicals) |
+| **Thermal stability** | <200C (most polymers) | >1000C (fused silica) | >500C (limited by dopant diffusion) |
+| **Pressure tolerance** | Low-moderate (<5 bar PDMS; higher for thermoplastics) | High (>100 bar fused silica) | High (>100 bar) |
+| **Biocompatibility** | Good (PDMS, COC) | Excellent | Good (with oxide coating) |
+| **Gas permeability** | High (PDMS) -- advantage for cell culture | Very low | Very low |
+| **Surface stability** | Hydrophobic recovery (PDMS) | Stable, well-defined surface chemistry | Stable (with oxide) |
+| **Electrical integration** | Difficult | Possible (ITO, metal deposition) | Excellent (integrated circuits, heaters, sensors) |
+| **Scalability to production** | Injection molding (COC, PMMA) | Glass etching is scalable | Semiconductor-standard; highly scalable |
 
-### When to Choose Glass
+### Choose Glass When...
 
-- **Solvent-based chemistry**: organic synthesis, solvent extraction, chromatography
-- **High-pressure applications**: glass withstands higher pressures than thin-wall polymer
-- **Optical detection requiring UV/deep-UV**: fluorescence excitation < 350 nm
-- **Long-term stability**: implantable devices, reusable instruments
-- **Electrokinetic separations**: well-characterized electroosmotic flow on glass surfaces
-- **Droplet generation**: glass surface chemistry is more stable and controllable than polymer
+1. **Organic solvents are used**: Glass resists virtually all organic solvents (toluene, hexane, DCM, THF, acetone, etc.) that would swell or dissolve PDMS and many thermoplastics.
+2. **High-temperature operation**: Reactions above 200C (e.g., high-temperature synthesis, supercritical fluid applications).
+3. **Optical detection is critical**: Fused silica offers the widest spectral transparency (180 nm - 2.5 um), lowest autofluorescence, and smoothest surfaces for optical detection. UV-transparent unlike most polymers.
+4. **Long-term surface stability**: Glass surface chemistry does not change over time (unlike PDMS hydrophobic recovery after plasma treatment).
+5. **High pressure**: Fused silica devices withstand >100 bar; PDMS typically fails above 2-5 bar.
+6. **Regulatory/validation**: Glass is well-characterized for medical and diagnostic applications; easier regulatory pathway for IVD devices.
+7. **No molecular absorption**: PDMS absorbs small hydrophobic molecules (drugs, lipids); glass does not.
+8. **Reusability**: Glass devices can be cleaned with strong acids/bases/solvents and reused indefinitely.
 
-### When to Choose Silicon
+### Choose Silicon When...
 
-- **High-aspect-ratio structures**: DRIE enables >20:1 vertical features
-- **Integrated electronics/sensors**: natural substrate for CMOS, thin-film electrodes
-- **Thermal management**: excellent thermal conductivity (150 W/mK) for PCR, chemical reactions
-- **Precision geometries**: DRIE and anisotropic etching give submicron precision
-- **Harsh environments**: high temperature, high pressure
+1. **Integrated electronics**: Heaters, temperature sensors, electrochemical electrodes, piezoresistive pressure sensors -- all can be fabricated on the same silicon substrate.
+2. **High-aspect-ratio channels**: DRIE produces vertical sidewalls with aspect ratios up to 50:1, impossible with isotropic glass etching.
+3. **Thermal management**: Silicon's high thermal conductivity (150 W/mK vs. 1.4 W/mK for glass) is critical for PCR thermal cycling, exothermic reactions, and heat dissipation.
+4. **MEMS integration**: Valves, pumps, actuators, and resonant sensors integrated monolithically.
+5. **Very fine features**: DRIE can produce 1-2 um features with vertical sidewalls.
+6. **Mass production**: Silicon processing is the most mature microfabrication technology; wafer-level manufacturing scales to millions of devices.
+7. **Through-wafer interconnects**: TSVs enable 3D stacking of microfluidic layers.
 
-### When to Choose Polymer
+### Choose Polymers When...
 
-- **Disposable/single-use devices**: cost-effective at any volume
-- **Point-of-care diagnostics**: injection molding enables mass production at $0.10-$1/chip
-- **Rapid prototyping**: iterate designs in hours, not weeks
-- **Biological assays**: PS is cell-culture standard; COC/COP have low protein binding
-- **Cost-sensitive applications**: overwhelmingly cheaper at scale
-- **Regulatory path for IVD**: established manufacturing processes (injection molding, ISO 13485)
+1. **Rapid prototyping**: PDMS soft lithography or 3D printing produces devices in hours, not days/weeks.
+2. **Low cost**: Per-device cost of PDMS is negligible after master fabrication.
+3. **Gas permeability needed**: Cell culture requires O2/CO2 exchange; PDMS is gas-permeable while glass and silicon are not.
+4. **Flexibility**: Deformable channels for pneumatic valves (Quake valves), peristaltic pumps.
+5. **Biocompatibility without coating**: PDMS is inherently biocompatible and optically transparent.
+6. **No cleanroom access**: PDMS casting and laser cutting can be done outside cleanrooms.
+7. **Disposable devices**: Low per-unit cost enables single-use devices.
+8. **Teaching and training**: Fastest, cheapest path to functional microfluidics.
 
 ### Hybrid Approaches
 
-Many practical devices combine materials:
-
-| Combination | Application |
-|-------------|-------------|
-| Glass channels + PDMS valves | Solvent-resistant channels with pneumatic control |
-| Silicon heaters + glass channels | PCR microfluidics |
-| Polymer chip + glass detection window | Cost-effective with optical quality where needed |
-| Silicon substrate + polymer microfluidics | Integrated sensors with disposable fluidics |
-
----
-
-## 10. Process Comparison Summary
-
-| Method | Min Feature | Surface Roughness | Cost/Device (Proto) | Cost/Device (Volume) | Lead Time | Best Application |
-|--------|-----------|-------------------|--------------------|--------------------|-----------|-----------------|
-| CO2 laser (PMMA) | 50-100 um | Ra 1-5 um | $0.10-$5 | $0.10-$1 | Hours | Rapid PMMA prototypes |
-| UV DPSS laser | 5-25 um | Ra 50-500 nm | $5-$50 | $2-$20 | Days | Mid-resolution polymer |
-| Excimer laser | 1-5 um | Ra 10-100 nm | $50-$500 | $10-$100 | 1-2 weeks | High-res polymer |
-| Femtosecond/SLE (glass) | 10-50 um | Ra 100-500 nm | $50-$500 | $20-$200 | 1-4 weeks | 3D glass microfluidics |
-| Glass wet etch (HF) | 5-20 um | Ra 1-10 nm | $200-$2K | $50-$200 | 2-6 weeks | Optical/chemical apps |
-| Si wet etch (KOH) | 1-2 um | Atomically smooth | $100-$1K | $20-$100 | 2-6 weeks | Crystallographic channels |
-| Si DRIE (Bosch) | 0.5-2 um | Scalloped 50-200 nm | $200-$2K | $50-$200 | 2-6 weeks | High-AR, vertical walls |
-| Hot embossing | Sub-um (mold dep.) | Mold-dependent | $20-$200 | $2-$10 | 2-6 weeks | Low-volume thermoplastic |
-| Injection molding | 1-5 um | Mold-dependent | $5K-$50K (setup) | $0.10-$2 | 6-16 weeks | Mass production |
+| Combination | How | Why |
+|---|---|---|
+| **PDMS on glass** | PDMS channels bonded to glass slide (O2 plasma) | Easy fabrication + good optics + solvent-compatible bottom surface |
+| **Silicon + glass** | DRIE channels in Si, anodic-bonded glass cap | Precise channels + optical access + integrated electronics |
+| **Glass + polymer gaskets** | Glass channels with PDMS or elastomer interconnects | Chemical resistance + easy world-to-chip connections |
+| **SLE glass + PDMS interface** | Monolithic glass channels with PDMS tubing adapters | Best of both: buried glass channels + compliant connections |
+| **3D printed + glass slide** | 3D printed PMMA or resin channels bonded to glass | Rapid prototyping of complex 3D geometries + glass imaging surface |
 
 ---
 
-## References and Sources
+## 9. Comparison Table: All Fabrication Approaches
 
-- [A Practical Guide for the Fabrication of Microfluidic Devices Using Glass and Silicon (PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC3365353/)
-- [Fabrication Methods for Microfluidic Devices: An Overview (PMC)](https://pmc.ncbi.nlm.nih.gov/articles/PMC8002879/)
-- [LightFab Products — Selective Laser Etching](https://lightfab.de/LightFab_Products.html)
-- [FEMTOPRINT — 3D Printing for Glass Microdevices](https://www.femtoprint.ch/)
-- [SLE of 3D Precision Quartz Glass Components (MDPI)](https://www.mdpi.com/2072-666X/8/4/110)
-- [Oxford Instruments — PlasmaPro 100 Estrelas DRIE](https://plasma.oxinst.com/products/dsie/plasmapro-100-estrelas-dsie)
-- [SPTS / Plasma-Therm — DRIE Technology](https://corial.plasmatherm.com/en/technologies/drie-deep-reactive-ion-etching)
-- [Deep Reactive-Ion Etching (Wikipedia)](https://en.wikipedia.org/wiki/Deep_reactive-ion_etching)
-- [Anodic Bonding (Wikipedia)](https://en.wikipedia.org/wiki/Anodic_bonding)
-- [What Is Anodic Bonding? (UniversityWafer)](https://www.universitywafer.com/anondic-bonding.html)
-- [Glass vs Polymer Microfluidics (Potomac Laser)](https://www.potomac-laser.com/material/microfluidics-polymers-vs-glass/)
-- [Choosing Materials for Microfluidic Chips (Blacksheep Sciences)](https://www.blacksheepsciences.com/publications/choosing-materials-for-microfluidic-chips)
-- [Microfluidics Hub — Wet Etching](https://www.microfluidicshub.eu/manufacturing/wet-etching)
-- [Micronit — Etching Capabilities](https://www.micronit.com/manufacturing/capabilities/etching)
-- [CO2 Laser Machining for Microfluidics (Springer)](https://link.springer.com/article/10.1007/s00542-020-04902-w)
-- [UV Laser Micromachining of Polymers for Microfluidic Applications (SLAS Technology)](https://slas-technology.org/article/S1535-5535(04)00179-0/fulltext)
-- [KOH and TMAH Etching of Bulk Silicon](https://microfluidicfoundry.com/Literature/Wet-Etching-of-Bulk-Silicon.pdf)
-- [Chemical Resistance of Microfluidic Materials (Elveflow)](https://elveflow.com/microfluidic-reviews/chemical-resistance-of-microfluidic-materials/)
-- [Maskless Rapid Manufacturing of Glass Microfluidic Devices Using Picosecond Laser (Nature)](https://www.nature.com/articles/s41598-019-56711-5)
-- [Material Selection for Microfluidic Devices (Parallel Fluidics)](https://www.parallelfluidics.com/resources/knowledge-base/material-selection-for-microfluidic-devices)
-- [Laser Processing for Bio-Microfluidics Applications (Springer)](https://link.springer.com/article/10.1007/s00216-006-0514-2)
+| Method | Min. Feature | Aspect Ratio | Surface Roughness | Throughput | Equipment Cost | Per-Device Cost | Cleanroom? |
+|---|---|---|---|---|---|---|---|
+| **CO2 laser (PMMA)** | ~100 um | Low | 1-10 um Ra | Very high | $400-70,000 | $1-10 | No |
+| **Excimer laser (polymer)** | ~10 um | Moderate | 50-500 nm Ra | Moderate | $100,000-500,000 | $10-50 | Preferred |
+| **Femtosecond SLE (glass)** | ~1 um | Very high (>100:1) | 50-200 nm Ra | Low | $200,000-600,000 | $50-500 | Preferred |
+| **Glass wet etch (HF)** | ~5 um | Low (0.5:1) | 1-10 nm Ra | High (batch) | $50,000-200,000 | $20-100 | Yes |
+| **Silicon DRIE** | ~1 um | Very high (50:1) | 50-200 nm Ra | High (batch) | $300,000-1,000,000 | $20-100 | Yes |
+| **Anodic bonding** | N/A (bonding) | N/A | N/A | High (batch) | $5,000-500,000 | $5-20 | Preferred |
+| **Glass thermal bonding** | N/A (bonding) | N/A | N/A | Moderate | $10,000-100,000 | $5-20 | Yes |
+
+---
+
+## 10. Emerging Trends (2025-2026)
+
+1. **Hybrid SLE + 2PP**: Femtika and others combining subtractive glass SLE with additive two-photon polymerization in a single workstation -- enabling polymer microstructures inside glass channels.
+
+2. **High-speed SLE**: LightFab's micro-scanner technology maintains high velocities on short vectors and sharp turns, significantly reducing SLE processing times for complex 3D microfluidics.
+
+3. **Eco-friendly glass etching**: Research into alternatives to HF for glass etching, including alkaline etchants and plasma-based methods, motivated by environmental and safety concerns.
+
+4. **Low-temperature bonding**: Plasma-activated direct bonding at near room temperature, eliminating thermal budget constraints and enabling bonding of pre-functionalized surfaces.
+
+5. **Wafer-level packaging**: Adaptation of semiconductor packaging technologies for mass production of glass/silicon microfluidic devices at wafer scale.
+
+6. **Deep multilevel glass etching**: Multiple-depth channel networks in single glass substrates using sequential lithography-etch cycles in BOE, enabling 3D channel crossings.
+
+7. **Cryo-DRIE improvements**: Smoother sidewalls than Bosch process, enabling better optical and fluidic performance in silicon channels.
+
+---
+
+## Sources
+
+- [CO2 laser machining for microfluidics mold fabrication from PMMA](https://www.sciencedirect.com/science/article/abs/pii/S1226086X21001568)
+- [Assessment of PMMA and polystyrene microfluidic chips by CO2 laser](https://www.sciencedirect.com/science/article/abs/pii/S0169433220323990)
+- [Excellent quality microchannels by CO2 laser with chemical post-processing](https://link.springer.com/article/10.1007/s10404-019-2291-1)
+- [Simple, low-cost fabrication of acrylic droplet microfluidics](https://www.nature.com/articles/s41598-018-27037-5)
+- [Trotec: Laser cutting plastics](https://www.troteclaser.com/en-us/laserable-materials/laser-cutting-plastics)
+- [Epilog Laser: Product line](https://www.epiloglaser.com/laser-machines/product-line/)
+- [Selective Laser-Induced Etching of 3D Glass Components for Microfluidics](https://pmc.ncbi.nlm.nih.gov/articles/PMC6190087/)
+- [FEMTOprint: Understanding SLE](https://www.femtoprint.ch/media/understanding-selective-laser-induced-etching-sle-how-it-works-and-what-it-enables/)
+- [Optimization of SLE for 3D glass microfluidic device](https://link.springer.com/article/10.1186/s40486-019-0094-5)
+- [LightFab 3D Printer](https://lightfab.de/products/3d-printer/)
+- [LightFab 3D Printer Data Sheet (2025)](https://lightfab.de/wp-content/uploads/2025/11/Flyer_Lightfab-3d-printer.pdf)
+- [3D-printed glass microfluidics for fluid dynamics and rheology](https://www.sciencedirect.com/science/article/pii/S1359029418301341)
+- [Maskless rapid manufacturing of glass microfluidics using picosecond pulsed laser](https://www.nature.com/articles/s41598-019-56711-5)
+- [UV Laser Micromachining of Polymers for Microfluidic Applications](https://www.sciencedirect.com/science/article/pii/S1535553504001790)
+- [Direct Micromachining of Microfluidic Channels Using Laser Ablation](https://pmc.ncbi.nlm.nih.gov/articles/PMC6432037/)
+- [Eco-friendly glass wet etching for MEMS: A review (2024)](https://ceramics.onlinelibrary.wiley.com/doi/full/10.1111/jace.19961)
+- [Chemical etching of glasses in hydrofluoric acid: A brief review](https://www.sciencedirect.com/science/article/abs/pii/S2214785321077865)
+- [Glass etch wet process SOP (UC Irvine)](https://www.inrf.uci.edu/wordpress/wp-content/uploads/sop-wet-glass-etch-wet-process.pdf)
+- [MIT HF etching safety procedures](https://www1.psfc.mit.edu/esh/hf.html)
+- [Deep multilevel wet etching of fused silica in BOE](https://www.nature.com/articles/s41598-023-32503-w)
+- [A practical guide for fabrication of microfluidic devices using glass and silicon](https://pmc.ncbi.nlm.nih.gov/articles/PMC3365353/)
+- [Deep Reactive Ion Etching -- Oxford Instruments](https://plasma.oxinst.com/technology/deep-reactive-ion-etching)
+- [Comparison between Bosch and STiGer processes for deep silicon etching](https://pmc.ncbi.nlm.nih.gov/articles/PMC8537062/)
+- [Reduced etch lag and high aspect ratios by DRIE](https://pmc.ncbi.nlm.nih.gov/articles/PMC8150727/)
+- [DRIE -- Wikipedia](https://en.wikipedia.org/wiki/Deep_reactive-ion_etching)
+- [Silicon etching and DRIE (Samco)](https://www.samcointl.com/processes/etching/si-etching/)
+- [Anodic bonding -- Wikipedia](https://en.wikipedia.org/wiki/Anodic_bonding)
+- [Anodic bonding procedure (UC Berkeley)](https://qb3.berkeley.edu/wp-content/uploads/2020/09/AnodicBondingProcedure.pdf)
+- [Fabrication of microfluidic cavities using Si-to-glass anodic bonding](https://pubs.aip.org/aip/rsi/article/89/7/073902/358389/)
+- [Silicon-glass anodic bonding at low temperature](https://www.researchgate.net/publication/253563489_Silicon-glass_anodic_bonding_at_low_temperature)
+- [Simple low-temperature glass bonding with O2 plasma activation](https://www.mdpi.com/2072-666X/11/9/804)
+- [What is anodic bonding -- UniversityWafer](https://www.universitywafer.com/anondic-bonding.html)
+- [PDMS and microfluidics review (Elveflow)](https://elveflow.com/microfluidic-reviews/the-polydimethylsiloxane-pdms-and-microfluidics/)
+- [PDMS for microfluidics: Limitations and alternatives (Micronit)](https://micronit.com/expertise/manufacturing-expertise/pdms-for-microfluidics)
+- [Microfluidics chips fabrication techniques comparison (2024)](https://www.nature.com/articles/s41598-024-80332-2)
+- [How to choose a microfluidic chip (Fluigent)](https://www.fluigent.com/resources-support/expertise/expertise-reviews/what-is-microfluidics/microfluidic-chips/how-to-choose-a-microfluidic-chip/)

@@ -2,7 +2,7 @@
 
 > **The definitive working engineer's guide to every tool needed to design, simulate, and fabricate microfluidic devices.**
 
-> Last updated: March 2026 | 23 research files | 700+ pages of content
+> Last updated: March 2026 | 27 research files | 722 KB of content (~700 pages)
 
 ---
 
@@ -82,11 +82,12 @@
 | # | File | Topics | Size |
 |---|------|--------|------|
 | 18 | [Materials Compatibility Database](research/18_materials_database.md) | Chemical compatibility charts for PDMS/COC/COP/PMMA/glass/silicon, swelling data, bonding compatibility matrix, material properties | 37 KB |
-| 19 | [Applications Guide](research/19_applications_guide.md) | POC diagnostics, drug discovery, single-cell analysis, flow chemistry, LNP production, environmental monitoring | *In progress* |
+| 19 | [Applications Guide](research/19_applications_guide.md) | POC diagnostics, drug discovery, single-cell analysis, flow chemistry, LNP production, environmental monitoring | 58 KB |
 | 20 | [Simulation Tutorials](research/20_simulation_tutorials.md) | Step-by-step COMSOL, OpenFOAM, FEniCS setup guides. Analytical calculators. Python code snippets. Mesh convergence. | 48 KB |
 | 21 | [Vendor Comparison Matrices](research/21_vendor_comparison.md) | Head-to-head: COMSOL vs ANSYS vs OpenFOAM, Elveflow vs Fluigent, 3D printer comparison, buying guides for 4 lab scenarios | 16 KB |
 | 22 | [Fabrication Recipes](research/22_fabrication_recipes.md) | SU-8 process parameters, dry film resists (Ordyl, ADEX), PDMS casting protocol, plasma bonding, mask ordering | 14 KB |
 | 23 | [Experiment Automation](research/23_automation_software.md) | Python/LabVIEW control, vendor SDKs (Elveflow, Fluigent), PID feedback, image analysis, data logging | 10 KB |
+| 24 | [Standards & Regulatory](research/24_standards_regulatory.md) | ISO 22916 interoperability, FDA 510(k), CE marking (MDR/IVDR), ISO 13485, biocompatibility, cleanroom classification | 8 KB |
 
 ---
 

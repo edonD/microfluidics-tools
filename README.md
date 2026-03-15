@@ -2,7 +2,7 @@
 
 > **The definitive working engineer's guide to every tool needed to design, simulate, and fabricate microfluidic devices.**
 
-> Last updated: March 2026 | 43 research files | 1.2 MB of content (~1200 pages)
+> Last updated: March 2026 | 45 research files | 1.23 MB of content (~1230 pages)
 
 ---
 
@@ -119,6 +119,18 @@
 |---|------|--------|------|
 | 34 | [Theory & Governing Equations](research/34_theory_equations.md) | Navier-Stokes, Stokes flow, non-Newtonian models, surface tension/wetting, electrokinetics, scaling laws | 41 KB |
 | 35 | [Safety & Environment](research/35_safety_environment.md) | Chemical hazards (HF, piranha), cleanroom safety, biosafety, laser safety, sustainability, emergency procedures | 27 KB |
+
+### Part 11: Specialized Topics (Phases 8-12)
+
+| # | File | Topics | Size |
+|---|------|--------|------|
+| 36 | [Multiplexing & HTS](research/36_multiplexing_hts.md) | Parallelization, droplet screening, multiplexed detection, sample prep, mLSI | 40 KB |
+| 37 | [Electronics Integration](research/37_electronics_integration.md) | PCB microfluidics, flexible sensors, IoT diagnostics, portable power | 34 KB |
+| 38 | [Design Patterns](research/38_design_patterns.md) | Standard geometries, mixing/droplet/separation patterns, templates | 9 KB |
+| 39 | [IP & Startup Landscape](research/39_ip_startup_landscape.md) | Patents, IP strategy, startup ecosystem, VC funding | 28 KB |
+| 40 | [FAQ](research/40_faq.md) | 30+ frequently asked questions with links to detailed files | 9 KB |
+| 42 | [Imaging & Visualization](research/42_imaging_visualization.md) | Microscopy, high-speed cameras, micro-PIV, image analysis, spectroscopy | 46 KB |
+| 43 | [Environmental & Energy](research/43_environmental_energy.md) | Water/air quality, energy apps, eDNA, agriculture | 28 KB |
 
 ---
 

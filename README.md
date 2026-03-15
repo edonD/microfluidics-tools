@@ -97,6 +97,14 @@
 | 26 | [Industry & Market Trends](research/26_industry_trends.md) | Market size/forecast, key players, startups, tech trends 2025-2030, career opportunities | 25 KB |
 | 27 | [Glossary & Quick Reference](research/27_glossary.md) | 80+ abbreviations, key formulas, physical constants, unit conversions, Python calculators | 11 KB |
 
+### Part 8: Application Platforms (Phase 5)
+
+| # | File | Topics | Size |
+|---|------|--------|------|
+| 28 | [Niche Tools](research/28_niche_tools.md) | Microfluidic valves/actuators, integrated sensors, gradient generators, cell traps, wearable sensors, LNP production | 36 KB |
+| 29 | [Biology Platforms](research/29_biology_platforms.md) | Organ-on-chip (Emulate, TissUse, CN Bio, Mimetas), single-cell (10x Genomics), digital PCR, on-chip FACS | *In progress* |
+| 30 | [Flow Chemistry & Microreactors](research/30_flow_chemistry.md) | Syrris, Vapourtec, Chemtrix, NanoAssemblr LNP production, microreactor design, inline PAT | *In progress* |
+
 ---
 
 ## Key Findings

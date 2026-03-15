@@ -2,7 +2,7 @@
 
 > **The definitive working engineer's guide to every tool needed to design, simulate, and fabricate microfluidic devices.**
 
-> Last updated: March 2026 | 36 research files | 1.1 MB of content (~1100 pages)
+> Last updated: March 2026 | 38 research files | 1.15 MB of content (~1150 pages)
 
 ---
 
@@ -112,6 +112,13 @@
 | 31 | [MEMS Sensors & Actuators](research/31_sensors_actuators.md) | Pressure/temperature/optical/electrochemical sensors, micropumps (Bartels), microvalves (Lee, Festo) | 39 KB |
 | 32 | [Packaging & Scale-Up](research/32_packaging_scaleup.md) | Device packaging, reagent storage, sample introduction, prototype-to-product, commercial success stories | 40 KB |
 | 33 | [Simulation Benchmarks](research/33_simulation_benchmarks.md) | Analytical validation solutions, CFD benchmarks, mesh convergence, computational costs, common pitfalls | 38 KB |
+
+### Part 10: Theory & Safety (Phase 7)
+
+| # | File | Topics | Size |
+|---|------|--------|------|
+| 34 | [Theory & Governing Equations](research/34_theory_equations.md) | Navier-Stokes, Stokes flow, non-Newtonian models, surface tension/wetting, electrokinetics, scaling laws | 41 KB |
+| 35 | [Safety & Environment](research/35_safety_environment.md) | Chemical hazards (HF, piranha), cleanroom safety, biosafety, laser safety, sustainability, emergency procedures | 27 KB |
 
 ---
 
